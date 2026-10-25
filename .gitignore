@@ -1,0 +1,14 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor backups
+*~
+*.swp
+*.bak

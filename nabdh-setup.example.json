@@ -1,0 +1,16 @@
+{
+  "nabdh": "https://nabdh-edu.com",
+  "lesson": "3-1 أنواع الترابط الكيميائي",
+  "classes": [
+    {
+      "name": "كيمياء 11/1",
+      "activities": [
+        { "code": "ab12cd", "title": "هل ترتبط الجسيمات في الملح والنحاس بالطريقة نفسها؟", "type": "poll", "label": "التمهيد" },
+        { "code": "ef34gh", "title": "أستطيع التمييز بين انتقال الإلكترونات ومشاركتها", "type": "likert", "label": "الختام" },
+        { "code": "ij56kl", "title": "لماذا تتجاوز ذرة S قاعدة الثمانية ولا تتجاوزها ذرة B؟", "type": "ideas", "label": "أثناء الدرس" },
+        { "code": "mn78op", "title": "ما نوع الترابط في NH₄⁺؟", "type": "poll", "label": "أثناء الدرس" }
+      ]
+    }
+  ],
+  "games": [{ "code": "k3m9x2p7q1", "title": "سلالم الروابط", "phase": "during" }]
+}

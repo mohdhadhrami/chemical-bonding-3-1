@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2d6a4f" />
+  <meta name="description" content="درس تفاعلي رقمي عن أنواع الترابط الكيميائي — الكيمياء، الصف الحادي عشر، سلطنة عُمان" />
+  <title>أنواع الترابط الكيميائي — درس تفاعلي 3-1</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@600;700;900&display=swap" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-theme="light">
+
+  <!-- ============================ TOP BAR ============================ -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <button class="menu-btn" id="menuBtn" aria-label="فتح قائمة الشرائح" aria-expanded="false">
+        <span class="menu-icon">☰</span>
+        <span class="menu-text">المحتوى</span>
+      </button>
+
+      <a href="#hero" class="brand" data-slide="hero" aria-label="الرئيسية">
+        <img src="assets/images/school-logo.png" alt="شعار مدرسة الإمام محمد بن عبدالله الخليلي" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+        <span class="brand-emoji" aria-hidden="true" style="display:none">⚛️</span>
+        <span class="brand-text">
+          <strong>الترابط الكيميائي</strong>
+          <small>درس تفاعلي 3-1</small>
+        </span>
+      </a>
+
+      <div class="slide-counter" aria-live="polite" aria-atomic="true">
+        <span id="slideNum">1</span>
+        <span class="sep">/</span>
+        <span id="slideTotal">16</span>
+      </div>
+
+      <div class="utilities">
+        <label class="class-picker" id="classPicker" hidden>
+          <span>فصلي</span>
+          <select id="classSelect" aria-label="اختر فصلك"></select>
+        </label>
+        <button id="fontSmaller" class="util-btn" title="تصغير الخط" aria-label="تصغير الخط">A−</button>
+        <button id="fontLarger" class="util-btn" title="تكبير الخط" aria-label="تكبير الخط">A+</button>
+        <button id="themeToggle" class="util-btn" title="الوضع الداكن" aria-label="تبديل الوضع الداكن">🌙</button>
+      </div>
+    </div>
+    <div class="reading-progress" id="readingProgress"></div>
+  </header>
+
+  <!-- ============================ DRAWER (SLIDE MENU) ============================ -->
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="قائمة شرائح الدرس">
+    <div class="drawer-head">
+      <strong>📚 شرائح الدرس</strong>
+      <button id="drawerClose" class="drawer-close" aria-label="إغلاق القائمة">✕</button>
+    </div>
+    <ol class="drawer-list" id="drawerList">
+      <li><a href="#hero" data-slide="hero"><span class="dl-num">01</span><span class="dl-icon">🏠</span><span class="dl-text">الرئيسية</span></a></li>
+      <li><a href="#avatar" data-slide="avatar"><span class="dl-num">02</span><span class="dl-icon">👨‍🏫</span><span class="dl-text">المعلّم الافتراضي</span></a></li>
+      <li><a href="#objectives" data-slide="objectives"><span class="dl-num">03</span><span class="dl-icon">🎯</span><span class="dl-text">أهداف التعلم</span></a></li>
+      <li class="dl-group">📗 الحصص الدراسية</li>
+      <li><a href="#lesson1" data-slide="lesson1"><span class="dl-num">04</span><span class="dl-icon">📗</span><span class="dl-text">الحصة 1 — الأيونية والتساهمية</span></a></li>
+      <li><a href="#video1" data-slide="video1"><span class="dl-num">05</span><span class="dl-icon">🎬</span><span class="dl-text">فيديو الحصة 1</span></a></li>
+      <li><a href="#lab1" data-slide="lab1"><span class="dl-num">06</span><span class="dl-icon">⚛️</span><span class="dl-text">منشئ المخطط النقطي</span></a></li>
+      <li><a href="#lesson2" data-slide="lesson2"><span class="dl-num">07</span><span class="dl-icon">📙</span><span class="dl-text">الحصة 2 — الروابط المتعددة</span></a></li>
+      <li><a href="#video2" data-slide="video2"><span class="dl-num">08</span><span class="dl-icon">🎬</span><span class="dl-text">فيديو الحصة 2</span></a></li>
+      <li><a href="#lab2" data-slide="lab2"><span class="dl-num">09</span><span class="dl-icon">🔬</span><span class="dl-text">مستكشف قاعدة الثمانية</span></a></li>
+      <li><a href="#lesson3" data-slide="lesson3"><span class="dl-num">10</span><span class="dl-icon">📕</span><span class="dl-text">الحصة 3 — التناسقية والفلزية</span></a></li>
+      <li class="dl-group">🎮 التطبيق والتقويم</li>
+      <li><a href="#games" data-slide="games"><span class="dl-num">11</span><span class="dl-icon">🎮</span><span class="dl-text">الأنشطة التفاعلية</span></a></li>
+      <li><a href="#tutor" data-slide="tutor"><span class="dl-num">12</span><span class="dl-icon">🤖</span><span class="dl-text">المساعد الذكي</span></a></li>
+      <li><a href="#quiz" data-slide="quiz"><span class="dl-num">13</span><span class="dl-icon">📝</span><span class="dl-text">التقييم النهائي</span></a></li>
+      <li><a href="#certificate" data-slide="certificate"><span class="dl-num">14</span><span class="dl-icon">🏆</span><span class="dl-text">شهادة الإتقان</span></a></li>
+      <li><a href="#dashboard" data-slide="dashboard"><span class="dl-num">15</span><span class="dl-icon">📊</span><span class="dl-text">لوحة التقدّم</span></a></li>
+      <li><a href="#refs" data-slide="refs"><span class="dl-num">16</span><span class="dl-icon">📖</span><span class="dl-text">الدليل والمراجع</span></a></li>
+    </ol>
+    <div class="drawer-foot">
+      <small>💡 استخدم الأسهم <kbd>←</kbd> <kbd>→</kbd> للتنقل بين الشرائح</small>
+    </div>
+  </aside>
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+
+  <!-- ============================ 01 · HERO ============================ -->
+  <section id="hero" class="section hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="molecule m1">⚛</div>
+      <div class="molecule m2">🧂</div>
+      <div class="molecule m3">🔗</div>
+      <div class="molecule m4">⚡</div>
+      <div class="molecule m5">🧲</div>
+    </div>
+
+    <div class="container hero-content">
+      <div class="school-block">
+        <img src="assets/images/school-logo.png" alt="شعار مدرسة الإمام محمد بن عبدالله الخليلي" class="school-logo-img" />
+        <div class="school-text">
+          <strong>مدرسة الإمام محمد بن عبدالله الخليلي</strong>
+          <em>Imam Muhammad bin Abdullah Al-Khalili School</em>
+          <span class="badge-inline">📘 الكيمياء — الصف الحادي عشر · الفصل الدراسي الأول</span>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        اكتشف أسرار <span class="hl">الترابط الكيميائي</span>
+      </h1>
+      <p class="hero-sub">
+        لماذا تتماسك الذرات؟ رحلة من انتقال الإلكترونات إلى بحر الإلكترونات
+        <br />
+        <small>سلطنة عُمان · الوحدة الثالثة · الدرس 3-1 · 3 حصص (120 دقيقة)</small>
+      </p>
+
+      <a href="#avatar" class="cta-btn">🚀 ابدأ الرحلة</a>
+
+      <div class="stats-grid">
+        <div class="stat"><span class="stat-num">16</span><span>شريحة</span></div>
+        <div class="stat"><span class="stat-num">20+</span><span>سؤالاً</span></div>
+        <div class="stat"><span class="stat-num">5</span><span>شارات</span></div>
+        <div class="stat"><span class="stat-num">3</span><span>حصص</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 02 · AVATAR ============================ -->
+  <section id="avatar" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2>👨‍🏫 ترحيب من معلّمك الافتراضي</h2>
+        <p class="section-sub">فيديو ترحيبي قصير قبل البدء بالدرس.</p>
+      </div>
+
+      <div class="placeholder-card">
+        <div class="ph-icon">🎥</div>
+        <strong>فيديو المعلّم الافتراضي (HeyGen)</strong>
+        <small>سيُرفق الرابط لاحقاً</small>
+      </div>
+
+      <blockquote class="speech-bubble">
+        «أهلًا بكم يا أبطال الكيمياء! هل تساءلتم يومًا لماذا يتفتت ملح الطعام بينما يُطرق النحاس ويُسحب أسلاكًا؟ السر في نوع <strong>الرابطة</strong> التي تمسك الجسيمات معًا. اليوم سنتتبع الإلكترونات وهي تنتقل، وتُشارَك، وتُمنَح، وتتحرك بحرية… لنبدأ! ⚛️»
+      </blockquote>
+
+      <div class="next-arrow"><a href="#objectives">⬇ تابع لأهداف التعلم</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 03 · OBJECTIVES ============================ -->
+  <section id="objectives" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2>🎯 أهداف التعلم</h2>
+        <p class="section-sub">خمسة أهداف متدرّجة وفق <strong>تصنيف بلوم المُعدَّل</strong> — لكل هدف نشاط في الموقع وأداة تقويم (الترابط الثلاثي).</p>
+      </div>
+
+      <div class="objectives-grid">
+        <article class="obj-card lvl-1">
+          <header><span class="lvl-dot">🟢</span><span class="lvl-name">تذكُّر</span><span class="lvl-num">01</span></header>
+          <p class="obj-text">أن <strong>يحدد</strong> الطالب، بعد فحص مثالين من الكتاب، الكاتيون والأنيون ويعرّف الرابطة الأيونية تعريفًا صحيحًا.</p>
+          <footer><span class="tool">🎬 حركة انتقال الإلكترون في K₂O</span><span class="tool">📝 تكويني 1 · نهائي س1</span></footer>
+        </article>
+
+        <article class="obj-card lvl-2">
+          <header><span class="lvl-dot">🔵</span><span class="lvl-name">فهم</span><span class="lvl-num">02</span></header>
+          <p class="obj-text">أن <strong>يفسر</strong> الطالب، بالاستعانة بمخطط، الفرق بين انتقال الإلكترونات (أيوني) ومشاركتها (تساهمي) في مثالين.</p>
+          <footer><span class="tool">⚖️ مقارنة K₂O ↔ Cl₂</span><span class="tool">📝 تكويني 2</span></footer>
+        </article>
+
+        <article class="obj-card lvl-3">
+          <header><span class="lvl-dot">🟡</span><span class="lvl-name">تطبيق</span><span class="lvl-num">03</span></header>
+          <p class="obj-text">أن <strong>يرسم</strong> الطالب مخططات تمثيل نقطي صحيحة لمركب أيوني وجزيئين تساهميين أحدهما متعدد الروابط، مع الشحنات والأزواج المنفردة.</p>
+          <footer><span class="tool">⚛️ منشئ المخطط النقطي</span><span class="tool">📝 تكويني 3 · واجب CaF₂</span></footer>
+        </article>
+
+        <article class="obj-card lvl-4">
+          <header><span class="lvl-dot">🟠</span><span class="lvl-name">تحليل</span><span class="lvl-num">04</span></header>
+          <p class="obj-text">أن <strong>يصنف</strong> الطالب أمثلة إلى أيوني/تساهمي/تناسقي/فلزي، ويبرر تصنيفاته بدليل من ترتيب الإلكترونات.</p>
+          <footer><span class="tool">🧩 لعبة التصنيف الرباعي</span><span class="tool">📝 تكويني 5 · نهائي س8</span></footer>
+        </article>
+
+        <article class="obj-card lvl-5">
+          <header><span class="lvl-dot">🔴</span><span class="lvl-name">فهم</span><span class="lvl-num">05</span></header>
+          <p class="obj-text">أن <strong>يفسر</strong> الطالب، من مخططي BF₃ وSF₆، لماذا لا تنطبق قاعدة الثمانية على الذرة المركزية.</p>
+          <footer><span class="tool">🔬 مستكشف قاعدة الثمانية</span><span class="tool">📝 تكويني 4 · نهائي س6</span></footer>
+        </article>
+      </div>
+
+      <div class="next-arrow"><a href="#lesson1">⬇ ابدأ الحصة الأولى</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 04 · LESSON 1 ============================ -->
+  <section id="lesson1" class="section section-alt lesson-block lesson-1">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2>📗 الحصة 1 — الرابطة الأيونية والتساهمية الأحادية</h2>
+        <div class="meta-row">
+          <span>⏱ 40 دقيقة</span>
+          <span>🎯 الأهداف 1، 2، 3</span>
+          <span>📌 تهيئة 5د · K₂O 10د · CaF₂ 10د · Cl₂ 10د · بطاقة خروج 5د</span>
+        </div>
+      </div>
+
+      <ol class="pipeline">
+        <li>ملح أم نحاس؟</li>
+        <li>جسر المعرفة</li>
+        <li>الرابطة الأيونية</li>
+        <li>تدرّب: CaF₂</li>
+        <li>التساهمية: Cl₂</li>
+        <li>بطاقة الخروج</li>
+      </ol>
+
+      <!-- 1: hook -->
+      <h3 class="step-h">1️⃣ التهيئة الجاذبة — «ملح أم نحاس؟»</h3>
+      <div class="hook-grid">
+        <figure class="hook-card">
+          <svg viewBox="0 0 160 120" role="img" aria-label="بلورات ملح الطعام">
+            <g class="salt">
+              <rect x="20" y="50" width="44" height="44" rx="3" />
+              <rect x="56" y="34" width="50" height="50" rx="3" />
+              <rect x="96" y="56" width="40" height="40" rx="3" />
+              <path d="M56 34 l12 -10 h50 l-12 10z M106 34 l12 -10 v50 l-12 10z" class="salt-top" />
+            </g>
+          </svg>
+          <figcaption>بلورات ملح الطعام NaCl (الصورة 3-2)<br /><small>هشّة… تتفتّت عند الطرق</small></figcaption>
+        </figure>
+        <figure class="hook-card">
+          <svg viewBox="0 0 160 120" role="img" aria-label="سلك وقطع من النحاس">
+            <g class="copper">
+              <path d="M10 90 C40 40, 70 110, 100 60 S150 40, 150 30" fill="none" stroke-width="7" stroke-linecap="round" />
+              <circle cx="40" cy="30" r="10" /><circle cx="62" cy="22" r="8" /><circle cx="120" cy="92" r="11" />
+            </g>
+          </svg>
+          <figcaption>النحاس Cu (الصورة 3-4)<br /><small>يُطرَق ويُسحب أسلاكًا ويوصل الكهرباء</small></figcaption>
+        </figure>
+      </div>
+      <div class="quiz-card hook-q">
+        <h4>🤔 سؤال التهيئة</h4>
+        <p>هل ترتبط الجسيمات في المادتين بالطريقة نفسها؟ اكتب توقّعك ودليلك.</p>
+        <textarea id="hookAnswer" rows="2" placeholder="توقّعي: …"></textarea>
+        <button class="lab-btn ghost" data-reveal="hookHint">💡 أظهر التلميح</button>
+        <p class="reveal-box" id="hookHint" hidden>الملح هشّ يتفتّت، والنحاس يُطرَق ويوصل الكهرباء… ماذا يخبرك ذلك عن طريقة تماسك الجسيمات؟ لا يُشترط أن تسمّي الرابطتين الآن.</p>
+      </div>
+      <div class="nabdh-slot" data-nabdh="activity" data-index="0"></div>
+
+      <!-- 2: prior knowledge -->
+      <h3 class="step-h">2️⃣ جسر المعرفة — التعلم القبلي</h3>
+      <p class="hint-line">اضغط على البطاقة لتقلبها.</p>
+      <div class="flip-grid">
+        <button class="flip-card" aria-pressed="false">
+          <span class="flip-front">ما إلكترونات المستوى الخارجي؟</span>
+          <span class="flip-back">إلكترونات آخر مستوى طاقة، وهي المسؤولة عن الترابط.</span>
+        </button>
+        <button class="flip-card" aria-pressed="false">
+          <span class="flip-front">ماذا يحدث لشحنة ذرة تفقد إلكترونًا؟</span>
+          <span class="flip-back">تصبح موجبة ← <strong>كاتيون</strong>.</span>
+        </button>
+        <button class="flip-card" aria-pressed="false">
+          <span class="flip-front">كيف تصل ذرة الهيدروجين إلى توزيع مستقر؟</span>
+          <span class="flip-back">باكتمال إلكترونين حولها (مثل الهيليوم) ← تمهيد للمشاركة.</span>
+        </button>
+      </div>
+      <div class="callout important">
+        <strong>📌 مهم:</strong> عندما تكوّن العناصر مركّبات، فإنها إمّا تكسب إلكترونات، أو تفقدها، أو تتشارك فيها، بهدف الوصول إلى التوزيع الإلكتروني المستقر لأقرب غاز نبيل.
+      </div>
+
+      <!-- 3: ionic K2O -->
+      <h3 class="step-h">3️⃣ الرابطة الأيونية — تكوّن K₂O خطوة بخطوة</h3>
+      <div class="mechanism-stage k2o-stage">
+        <svg id="k2oSvg" class="k2o" viewBox="0 0 520 260" direction="ltr" role="img" aria-label="انتقال إلكترون من كل ذرة بوتاسيوم إلى ذرة الأكسجين">
+          <defs>
+            <marker id="arrHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" class="arrow-fill" /></marker>
+          </defs>
+          <!-- K atoms (left side visually = right in RTL reading but keep chemistry left→right) -->
+          <g class="atom-k" id="k2oK1">
+            <circle cx="90" cy="70" r="42" class="shell" />
+            <text x="90" y="76" class="sym">K</text>
+            <text x="90" y="128" class="cfg" id="k2oCfgK1">2,8,8,1</text>
+          </g>
+          <g class="atom-k" id="k2oK2">
+            <circle cx="90" cy="190" r="42" class="shell" />
+            <text x="90" y="196" class="sym">K</text>
+            <text x="90" y="248" class="cfg" id="k2oCfgK2">2,8,8,1</text>
+          </g>
+          <g class="atom-o">
+            <circle cx="380" cy="130" r="52" class="shell" />
+            <text x="380" y="137" class="sym">O</text>
+            <text x="380" y="205" class="cfg" id="k2oCfgO">2,6</text>
+            <!-- 6 own electrons (•) -->
+            <circle class="e-dot" cx="380" cy="78" r="5" /><circle class="e-dot" cx="394" cy="80" r="5" />
+            <circle class="e-dot" cx="432" cy="124" r="5" /><circle class="e-dot" cx="432" cy="138" r="5" />
+            <circle class="e-dot" cx="380" cy="182" r="5" /><circle class="e-dot" cx="394" cy="180" r="5" />
+          </g>
+          <!-- transferred electrons (×) -->
+          <g class="e-cross k2o-move" id="k2oE1" data-tx="198" data-ty="54"><path d="M126 66 l8 8 M134 66 l-8 8" /></g>
+          <g class="e-cross k2o-move" id="k2oE2" data-tx="198" data-ty="-52"><path d="M126 186 l8 8 M134 186 l-8 8" /></g>
+          <path id="k2oArr1" class="flow-arrow" d="M140 80 Q 240 70 320 118" marker-end="url(#arrHead)" />
+          <path id="k2oArr2" class="flow-arrow" d="M140 180 Q 240 190 320 142" marker-end="url(#arrHead)" />
+          <!-- brackets -->
+          <g class="brackets" id="k2oBr">
+            <path d="M40 20 h-10 v220 h10 M140 20 h10 v220 h-10" />
+            <text x="160" y="30" class="charge">+</text>
+            <text x="20" y="135" class="coef">2</text>
+            <path d="M318 68 h-10 v124 h10 M442 68 h10 v124 h-10" />
+            <text x="462" y="78" class="charge">2−</text>
+          </g>
+        </svg>
+        <ol class="mech-steps k2o-steps">
+          <li>ذرتا K (2,8,8,1) وذرة O (2,6)</li>
+          <li>كل ذرة K تنقل إلكترونها الخارجي إلى O</li>
+          <li>تتكوّن أيونات: 2[K]⁺ و[O]²⁻</li>
+          <li>2K⁺ + O²⁻ → K₂O · الشحنة الكلية صفر ✓</li>
+        </ol>
+        <div class="mech-step" id="k2oCaption">جاهز للتشغيل…</div>
+        <div class="mech-controls">
+          <button class="lab-btn primary" id="k2oNext">▶ الخطوة التالية</button>
+          <button class="lab-btn ghost" id="k2oReset">🔄 إعادة</button>
+        </div>
+        <div class="k2o-summary" id="k2oSummary" hidden>
+          <p>• أيون K⁺ يمتلك التوزيع <strong>[2,8,8]⁺</strong> — مثل الأرغون Ar.</p>
+          <p>• أيون O²⁻ يمتلك التوزيع <strong>[2,8]²⁻</strong> — مثل النيون Ne.</p>
+          <p class="reaction-line"><span dir="ltr">2K⁺ + O²⁻ → K₂O</span> · الشحنة الكلية = <span dir="ltr">2(+1) + (−2) = 0</span> ✓</p>
+        </div>
+      </div>
+
+      <div class="terms-card">
+        <h4>📖 مصطلحات علمية</h4>
+        <dl>
+          <dt>الكاتيون Cation</dt><dd>أيون يحمل شحنة موجبة.</dd>
+          <dt>الأنيون Anion</dt><dd>أيون يحمل شحنة سالبة.</dd>
+          <dt>الشبكة Lattice</dt><dd>ترتيب مكرّر بانتظام للذرّات أو الجزيئات أو الأيونات في كامل البنية البلورية ثلاثية الأبعاد.</dd>
+          <dt>الرابطة الأيونية Ionic bonding</dt><dd>قوة الجذب الكهروستاتيكي بين أيونات ذات شحنات متعاكسة (كاتيونات وأنيونات).</dd>
+          <dt>مخطط التمثيل النقطي Dot-and-cross diagram</dt><dd>مخطط يوضح ترتيب إلكترونات مستويات الطاقة الخارجية في عنصر أو مركّب، تُمثَّل فيه الإلكترونات بنقاط (•) أو علامات (×) لتوضيح مصدرها.</dd>
+        </dl>
+      </div>
+
+      <div class="callout important">
+        <strong>📌 قواعد الرسم:</strong> نقاط (•) وعلامات (×) لتمييز مصدر الإلكترونات · في المركّبات الأيونية نرسم مستويات الطاقة الخارجية فقط · أقواس مربعة حول كل أيون، والشحنة في الزاوية العليا اليمنى للقوس.
+      </div>
+
+      <!-- 4: CaF2 practice -->
+      <h3 class="step-h">4️⃣ تدرّب ثنائيًا — CaF₂ (سؤال الكتاب ص78، 1-أ)</h3>
+      <div class="practice-grid">
+        <div class="practice-card">
+          <p>ارسم مخطط التمثيل النقطي للأيونات في <strong>فلوريد الكالسيوم CaF₂</strong> (المستويات الخارجية فقط).</p>
+          <button class="lab-btn ghost" data-reveal="caf2Model">👁 اكشف النموذج</button>
+          <div class="reveal-box" id="caf2Model" hidden>
+            <div class="diagram" data-diagram="CaF2"></div>
+            <p><strong>[Ca]²⁺</strong> و <strong>2[F]⁻</strong> — لكل F ثمانية إلكترونات في مستواها الخارجي (7 • + 1 × منتقل من Ca).</p>
+          </div>
+        </div>
+        <div class="practice-card advanced">
+          <span class="chip-tag">🔴 للمتقدمين</span>
+          <p><strong>ب.</strong> بروميد المغنيسيوم MgBr₂ &nbsp; · &nbsp; <strong>ج.</strong> نيتريد البوتاسيوم K₃N</p>
+          <button class="lab-btn ghost" data-reveal="advIonic">👁 اكشف الإجابة</button>
+          <div class="reveal-box" id="advIonic" hidden>
+            <p>MgBr₂: <strong>[Mg]²⁺ + 2[Br]⁻</strong> — كل ذرة Br تكسب إلكترونًا من Mg.</p>
+            <p>K₃N: <strong>3[K]⁺ + [N]³⁻</strong> — ذرة N (2,5) تكسب ثلاثة إلكترونات.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: covalent Cl2 -->
+      <h3 class="step-h">5️⃣ الرابطة التساهمية الأحادية — Cl₂ مقابل K₂O</h3>
+      <div class="cl2-grid">
+        <div class="cl2-card">
+          <div class="diagram clickable" data-diagram="Cl2" data-pairs="true"></div>
+          <p class="pair-info" id="pairInfo-Cl2" aria-live="polite">اضغط على أي زوج من الإلكترونات لتعرف نوعه.</p>
+          <p>كل ذرة Cl <strong>(2,8,7)</strong> تشارك بإلكترون واحد ← زوج مشترك واحد، فتصبح كل ذرة <strong>(2,8,8)</strong>. الصيغة البنائية: <code>Cl—Cl</code></p>
+        </div>
+        <div class="cl2-card">
+          <div class="diagram" data-diagram="H2"></div>
+          <p>جزيء H₂: زوج مشترك واحد، ولا أزواج منفردة؛ كل ذرة H أصبح لها إلكترونان (مثل He).</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th></th><th>K₂O (أيوني)</th><th>Cl₂ (تساهمي)</th></tr></thead>
+          <tbody>
+            <tr><td>ماذا يحدث للإلكترونات؟</td><td><strong>انتقال</strong> من K إلى O</td><td><strong>مشاركة</strong> زوج بين ذرتين</td></tr>
+            <tr><td>الجسيمات الناتجة</td><td>أيونات K⁺ وO²⁻</td><td>جزيء متعادل</td></tr>
+            <tr><td>نوع الذرات</td><td>فلز + لافلز</td><td>لافلز + لافلز</td></tr>
+            <tr><td>طريقة الرسم</td><td>أقواس وشحنات</td><td>دوائر متداخلة بلا شحنات</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="terms-card">
+        <h4>📖 مصطلحات علمية</h4>
+        <dl>
+          <dt>الرابطة التساهمية الأحادية Single covalent bond</dt><dd>قوة الجذب الكهروستاتيكي التي تنشأ بين نواتَي ذرّتين وزوج مشترك من الإلكترونات.</dd>
+          <dt>أزواج منفردة من الإلكترونات Lone pairs</dt><dd>أزواج من الإلكترونات موجودة في مستوى الطاقة الخارجي لذرّة ما، لكنها لا تشارك في الترابط.</dd>
+        </dl>
+      </div>
+
+      <!-- 6: exit ticket -->
+      <h3 class="step-h">6️⃣ تقويم تكويني — بطاقة الخروج</h3>
+      <div class="quiz-card" data-award="f1">
+        <h4>💡 سؤال 1 · تذكّر (الهدف 1)</h4>
+        <p>ما الأيونان المتكوّنان في K₂O؟</p>
+        <div class="options" data-correct="a">
+          <button data-opt="a">K⁺ و O²⁻ بنسبة 2:1</button>
+          <button data-opt="b">K²⁺ و O⁻</button>
+          <button data-opt="c">K⁻ و O²⁺</button>
+          <button data-opt="d">لا تتكوّن أيونات</button>
+        </div>
+        <div class="feedback" hidden data-wrong="راجع الإلكترونات المنتقلة والشحنات: كل K يفقد إلكترونًا واحدًا، وO تكسب إلكترونين."></div>
+      </div>
+      <div class="quiz-card" data-award="f2">
+        <h4>💡 سؤال 2 · فهم (الهدف 2)</h4>
+        <p>كيف يختلف تكوّن Cl₂ عن تكوّن K₂O؟</p>
+        <div class="options" data-correct="b">
+          <button data-opt="a">في كليهما تنتقل الإلكترونات</button>
+          <button data-opt="b">تتشارك ذرتا Cl زوجًا، بينما تنتقل الإلكترونات في K₂O لتكوين أيونات</button>
+          <button data-opt="c">في Cl₂ تتكوّن أيونات Cl⁺ وCl⁻</button>
+          <button data-opt="d">في K₂O تتشارك الذرات زوجًا من الإلكترونات</button>
+        </div>
+        <div class="feedback" hidden data-wrong="تذكّر: الأيوني = انتقال إلكترونات، والتساهمي = مشاركة أزواج."></div>
+      </div>
+      <div class="nabdh-slot" data-nabdh="activity" data-index="1"></div>
+      <div class="link-card kahoot">
+        <div class="link-icon">🎮</div>
+        <div class="link-info"><strong>Kahoot — 5 أسئلة سريعة</strong><small>سيُرفق الرابط لاحقاً</small></div>
+        <button class="link-btn" type="button" data-later>افتح Kahoot</button>
+      </div>
+
+      <div class="next-arrow"><a href="#video1">⬇ انتقل للفيديو التفاعلي</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 05 · VIDEO 1 ============================ -->
+  <section id="video1" class="section video-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2>🎬 الفيديو التفاعلي — الحصة 1</h2>
+        <p class="section-sub">يتوقف الفيديو عند كل سؤال. إن لم يُرفق الفيديو بعد، أجب عن الأسئلة مباشرة.</p>
+      </div>
+      <div class="video-segment-info">
+        <span class="vq-progress" id="vqProg-video1">❓ 0/4 أسئلة</span>
+      </div>
+      <div class="video-host" data-video="video1"></div>
+      <div class="video-questions" data-vq-list="video1"></div>
+      <div class="next-arrow"><a href="#lab1">⬇ انتقل لمنشئ المخطط النقطي</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 06 · LAB 1 — DOT & CROSS BUILDER ============================ -->
+  <section id="lab1" class="section lab-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">06</span>
+        <h2>⚛️ المختبر الافتراضي — منشئ مخطط التمثيل النقطي</h2>
+        <p class="section-sub">وزّع إلكترونات التكافؤ: <strong>•</strong> للذرة الأولى و<strong>×</strong> للذرة الأخرى. اسحبها أو اضغط الإلكترون ثم اضغط الخانة.</p>
+      </div>
+
+      <div class="prep-tabs builder-tabs" role="tablist" id="builderTabs"></div>
+
+      <div class="builder" id="builder">
+        <div class="builder-head">
+          <strong id="bTitle"></strong>
+          <span id="bInfo"></span>
+        </div>
+        <div class="builder-pool" id="bPool" aria-label="الإلكترونات المتاحة"></div>
+        <div class="builder-bins">
+          <div class="bbin" data-bin="shared" tabindex="0"><strong>🔗 أزواج مشتركة (روابط)</strong><div class="bbin-items"></div></div>
+          <div class="bbin" data-bin="loneA" tabindex="0"><strong id="bLoneALabel">⚪ أزواج منفردة على الذرة الأولى</strong><div class="bbin-items"></div></div>
+          <div class="bbin" data-bin="loneB" tabindex="0"><strong id="bLoneBLabel">⚪ أزواج منفردة على الذرة الأخرى</strong><div class="bbin-items"></div></div>
+        </div>
+        <div class="lab-controls">
+          <button class="lab-btn primary" id="bCheck">✔ تحقّق</button>
+          <button class="lab-btn ghost" id="bReset">🔄 إعادة</button>
+        </div>
+        <div class="sorter-result" id="bResult" aria-live="polite"></div>
+        <div class="diagram builder-diagram" id="bDiagram" hidden></div>
+      </div>
+
+      <div class="builder-progress" id="builderProgress"></div>
+
+      <div class="next-arrow"><a href="#lesson2">⬇ انتقل للحصة الثانية</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 07 · LESSON 2 ============================ -->
+  <section id="lesson2" class="section section-alt lesson-block lesson-2">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">07</span>
+        <h2>📙 الحصة 2 — الروابط المتعددة واستثناءات الثمانية</h2>
+        <div class="meta-row">
+          <span>⏱ 40 دقيقة</span>
+          <span>🎯 الأهداف 3، 5</span>
+          <span>📌 استرجاع 4د · عدّ الأزواج 12د · O₂/N₂ 10د · BF₃/SF₆ 10د · بطاقة خروج 4د</span>
+        </div>
+      </div>
+
+      <ol class="pipeline">
+        <li>صح أم خطأ؟</li>
+        <li>عدّ الأزواج</li>
+        <li>ثنائية وثلاثية</li>
+        <li>استثناءات الثمانية</li>
+        <li>بطاقة الخروج</li>
+      </ol>
+
+      <h3 class="step-h">1️⃣ استرجاع سريع — صح أم خطأ؟</h3>
+      <div class="tf-grid">
+        <div class="tf-card" data-correct="false">
+          <p>في Cl₂ تنتقل الإلكترونات من ذرة إلى أخرى.</p>
+          <div class="tf-buttons"><button data-ans="true">✅ صحيح</button><button data-ans="false">❌ خطأ</button></div>
+          <div class="tf-feedback" hidden data-explain="الذرتان تتشاركان زوجًا من الإلكترونات."></div>
+        </div>
+        <div class="tf-card" data-correct="true">
+          <p>الزوج المنفرد لا يشارك في الترابط.</p>
+          <div class="tf-buttons"><button data-ans="true">✅ صحيح</button><button data-ans="false">❌ خطأ</button></div>
+          <div class="tf-feedback" hidden data-explain="هذا تعريف الزوج المنفرد."></div>
+        </div>
+        <div class="tf-card" data-correct="false">
+          <p>في H₂ تمتلك كل ذرة ثمانية إلكترونات.</p>
+          <div class="tf-buttons"><button data-ans="true">✅ صحيح</button><button data-ans="false">❌ خطأ</button></div>
+          <div class="tf-feedback" hidden data-explain="لكل ذرة H إلكترونان فقط، مثل He."></div>
+        </div>
+        <div class="tf-card" data-correct="true">
+          <p>أيون الأكسيد في K₂O يمتلك توزيع النيون.</p>
+          <div class="tf-buttons"><button data-ans="true">✅ صحيح</button><button data-ans="false">❌ خطأ</button></div>
+          <div class="tf-feedback" hidden data-explain="O²⁻ توزيعه [2,8]²⁻ مثل Ne."></div>
+        </div>
+      </div>
+
+      <h3 class="step-h">2️⃣ عمل مجموعات — CH₄ وH₂O وNH₃ (الجدول 3-2)</h3>
+      <div class="count-grid">
+        <div class="count-card">
+          <div class="diagram" data-diagram="CH4"></div>
+          <button class="lab-btn ghost" data-reveal="cntCH4">🔢 عُدّ الأزواج</button>
+          <p class="reveal-box" id="cntCH4" hidden>CH₄: <strong>4</strong> أزواج مشتركة · <strong>0</strong> منفردة</p>
+        </div>
+        <div class="count-card">
+          <div class="diagram" data-diagram="H2O"></div>
+          <button class="lab-btn ghost" data-reveal="cntH2O">🔢 عُدّ الأزواج</button>
+          <p class="reveal-box" id="cntH2O" hidden>H₂O: <strong>2</strong> مشتركة · <strong>2 منفردان على O</strong></p>
+        </div>
+        <div class="count-card">
+          <div class="diagram" data-diagram="NH3"></div>
+          <button class="lab-btn ghost" data-reveal="cntNH3">🔢 عُدّ الأزواج</button>
+          <p class="reveal-box" id="cntNH3" hidden>NH₃: <strong>3</strong> مشتركة · <strong>1 منفرد على N</strong></p>
+        </div>
+      </div>
+      <p class="hint-line">➕ الإيثان C₂H₆: سبعة أزواج مشتركة (6 C–H وواحد C–C).</p>
+
+      <h3 class="step-h">3️⃣ الروابط الثنائية والثلاثية — O₂ وN₂</h3>
+      <div class="slider-card">
+        <label for="bondOrder"><strong>عدد الأزواج المشتركة:</strong> <output id="bondOrderOut">1</output></label>
+        <input type="range" id="bondOrder" min="1" max="3" step="1" value="1" />
+        <div class="slider-ticks"><span>Cl₂</span><span>O₂</span><span>N₂</span></div>
+        <div class="diagram" id="orderDiagram"></div>
+        <p id="orderText" aria-live="polite"></p>
+      </div>
+      <div class="prep-tabs" role="tablist">
+        <button class="prep-tab active" data-tab="dbl1" role="tab">ثاني أكسيد الكربون CO₂</button>
+        <button class="prep-tab" data-tab="dbl2" role="tab">الإيثين C₂H₄</button>
+        <button class="prep-tab" data-tab="dbl3" role="tab">ثاني أكسيد الكبريت SO₂</button>
+      </div>
+      <div class="prep-pane active" id="dbl1">
+        <div class="diagram" data-diagram="CO2"></div>
+        <p>رابطتان ثنائيتان <code>O=C=O</code>؛ زوجان منفردان على كل O ولا أزواج منفردة على C.</p>
+      </div>
+      <div class="prep-pane" id="dbl2">
+        <pre class="reaction">  H       H
+   \     /
+    C = C
+   /     \
+  H       H</pre>
+        <p>رابطة ثنائية بين ذرتي الكربون <code>C=C</code>، وأربع روابط أحادية C–H.</p>
+      </div>
+      <div class="prep-pane" id="dbl3">
+        <div class="diagram" data-diagram="SO2"></div>
+        <p>S (2,8,6) يكوّن رابطة ثنائية مع كل ذرة O ويبقى عليه زوج منفرد ← <strong>10 إلكترونات حول S</strong>: تجاوز لقاعدة الثمانية.</p>
+      </div>
+      <div class="terms-card">
+        <h4>📖 مصطلحات علمية</h4>
+        <dl>
+          <dt>الرابطة التساهمية الثنائية Double covalent bond</dt><dd>قوة الجذب الكهروستاتيكي التي تنشأ بين نواتَي ذرّتين وزوجَين مشتركَين من الإلكترونات.</dd>
+          <dt>الرابطة التساهمية الثلاثية Triple covalent bond</dt><dd>قوة الجذب الكهروستاتيكي التي تنشأ بين نواتَي ذرّتين وثلاثة أزواج مشتركة من الإلكترونات.</dd>
+        </dl>
+      </div>
+
+      <h3 class="step-h">4️⃣ استثناءات قاعدة الثمانية — BF₃ وSF₆</h3>
+      <div class="callout">
+        هل تحيط ثمانية إلكترونات دائمًا بالذرة المركزية؟ قارن ثنائيًا BF₃ وSF₆، ثم انتقل إلى <a href="#lab2"><strong>🔬 مستكشف قاعدة الثمانية</strong></a>.
+      </div>
+
+      <h3 class="step-h">5️⃣ بطاقة الخروج</h3>
+      <div class="quiz-card" data-award="f3">
+        <h4>💡 سؤال 3 · فهم (الهدف 5)</h4>
+        <p>كم إلكترونًا يحيط بذرة B في BF₃؟</p>
+        <div class="options" data-correct="a">
+          <button data-opt="a">ستة</button>
+          <button data-opt="b">ثمانية</button>
+          <button data-opt="c">ثلاثة</button>
+          <button data-opt="d">عشرة</button>
+        </div>
+        <div class="feedback" hidden data-wrong="B (2,3) تكوّن ثلاث روابط فقط: 3 × 2 = 6 إلكترونات."></div>
+      </div>
+      <div class="quiz-card" data-award="f4">
+        <h4>💡 سؤال 4 · تطبيق (الهدف 3)</h4>
+        <p>في مخطط O₂، كم زوجًا مشتركًا بين الذرتين؟</p>
+        <div class="options" data-correct="b">
+          <button data-opt="a">زوج واحد</button>
+          <button data-opt="b">زوجان (وزوجان منفردان على كل O)</button>
+          <button data-opt="c">ثلاثة أزواج</button>
+          <button data-opt="d">لا أزواج مشتركة</button>
+        </div>
+        <div class="feedback" hidden data-wrong="كل O (2,6) تحتاج إلكترونين ← تشارك زوجين: O=O."></div>
+      </div>
+
+      <details class="diff-box">
+        <summary>🎚 التمايز</summary>
+        <ul>
+          <li>🟢 <strong>للمتعثرين:</strong> اكتب عدد إلكترونات التكافؤ لكل ذرة أولًا (C 4، N 5، O 6، F/Cl 7)، ثم ارسم الأزواج المشتركة قبل المنفردة.</li>
+          <li>🟡 <strong>للمستوى المتوسط:</strong> ارسم O₂ وN₂ وقارن عدد الأزواج.</li>
+          <li>🔴 <strong>للمتقدمين:</strong> فسّر PCl₅ وSO₂، وحلّ سؤال الكتاب ص82 (CCl₄، PCl₃، Br₂، BeCl₂ «نقص»، SbF₅ «تجاوز») وص84 (COCl₂، CS₂).</li>
+        </ul>
+      </details>
+
+      <div class="next-arrow"><a href="#video2">⬇ انتقل لفيديو الحصة 2</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 08 · VIDEO 2 ============================ -->
+  <section id="video2" class="section video-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">08</span>
+        <h2>🎬 الفيديو التفاعلي — الحصة 2</h2>
+        <p class="section-sub">الروابط المتعددة واستثناءات قاعدة الثمانية.</p>
+      </div>
+      <div class="video-segment-info">
+        <span class="vq-progress" id="vqProg-video2">❓ 0/4 أسئلة</span>
+      </div>
+      <div class="video-host" data-video="video2"></div>
+      <div class="video-questions" data-vq-list="video2"></div>
+      <div class="next-arrow"><a href="#lab2">⬇ انتقل لمستكشف قاعدة الثمانية</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 09 · LAB 2 — OCTET EXPLORER ============================ -->
+  <section id="lab2" class="section lab-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">09</span>
+        <h2>🔬 مستكشف قاعدة الثمانية</h2>
+        <p class="section-sub">اختر جزيئًا، توقّع عدد الإلكترونات حول الذرة المركزية، ثم اكشف.</p>
+      </div>
+
+      <div class="prep-tabs" id="octetTabs" role="tablist"></div>
+      <div class="octet-grid">
+        <div class="octet-card">
+          <div class="diagram" id="octetDiagram"></div>
+        </div>
+        <div class="octet-card">
+          <h3 id="octetTitle"></h3>
+          <p id="octetCenter"></p>
+          <label class="guess-row">توقّعك: <input type="number" id="octetGuess" min="0" max="14" inputmode="numeric" /> إلكترونًا</label>
+          <button class="lab-btn primary" id="octetReveal">👁 اكشف</button>
+          <div class="octet-meter" aria-hidden="true">
+            <div class="om-track"><div class="om-fill" id="octetFill"></div><span class="om-eight"></span></div>
+            <div class="om-labels"><span>نقص</span><span>ثمانية</span><span>تجاوز</span></div>
+          </div>
+          <p class="octet-verdict" id="octetVerdict" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="builder-progress" id="octetProgress"></div>
+
+      <div class="callout important">
+        <strong>📌 لماذا؟</strong> بعض عناصر الدورة الثالثة في المجموعات 15 و16 و17 يمكنها استيعاب أكثر من 8 إلكترونات؛ إذ تستخدم أفلاك d الشاغرة في مستوى الطاقة الرئيسي الثالث (ستدرس التهجين لاحقًا). أمّا B في الدورة الثانية فلديها 3 إلكترونات تكافؤ فقط، فتكوّن ثلاث روابط وتبقى بـ 6 إلكترونات: <strong>نقص في الإلكترونات</strong>.
+      </div>
+      <div class="nabdh-slot" data-nabdh="activity" data-index="2"></div>
+
+      <h3 class="step-h">🧊 نماذج ثلاثية الأبعاد (MolView)</h3>
+      <div class="molview-grid">
+        <figure class="molview"><iframe src="https://embed.molview.org/v1/?mode=balls&amp;smiles=FB(F)F&amp;bg=white" title="نموذج BF₃ ثلاثي الأبعاد" loading="lazy"></iframe><figcaption>BF₃</figcaption></figure>
+        <figure class="molview"><iframe src="https://embed.molview.org/v1/?mode=balls&amp;smiles=FS(F)(F)(F)(F)F&amp;bg=white" title="نموذج SF₆ ثلاثي الأبعاد" loading="lazy"></iframe><figcaption>SF₆</figcaption></figure>
+        <figure class="molview"><iframe src="https://embed.molview.org/v1/?mode=balls&amp;smiles=ClP(Cl)(Cl)(Cl)Cl&amp;bg=white" title="نموذج PCl₅ ثلاثي الأبعاد" loading="lazy"></iframe><figcaption>PCl₅</figcaption></figure>
+      </div>
+
+      <div class="next-arrow"><a href="#lesson3">⬇ انتقل للحصة الثالثة</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 10 · LESSON 3 ============================ -->
+  <section id="lesson3" class="section section-alt lesson-block lesson-3">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">10</span>
+        <h2>📕 الحصة 3 — الرابطة التناسقية والفلزية والمقارنة</h2>
+        <div class="meta-row">
+          <span>⏱ 40 دقيقة</span>
+          <span>🎯 الهدف 4</span>
+          <span>📌 استرجاع 4د · NH₄⁺ 12د · معقدات Cu 8د · فلزية وتصنيف 10د · ختام 6د</span>
+        </div>
+      </div>
+
+      <ol class="pipeline">
+        <li>أين الزوج المنفرد؟</li>
+        <li>تكوين NH₄⁺</li>
+        <li>المعقدات الفلزية</li>
+        <li>بحر الإلكترونات</li>
+        <li>التصنيف الرباعي</li>
+      </ol>
+
+      <h3 class="step-h">1️⃣ استرجاع — أين الزوج المنفرد في NH₃؟</h3>
+      <div class="cl2-card">
+        <div class="diagram clickable" data-diagram="NH3" data-pairs="true"></div>
+        <p class="pair-info" id="pairInfo-NH3" aria-live="polite">اضغط على الزوج المنفرد.</p>
+      </div>
+
+      <h3 class="step-h">2️⃣ الرابطة التناسقية — تكوين أيون الأمونيوم NH₄⁺</h3>
+      <div class="mechanism-stage">
+        <div class="coord-stage">
+          <div class="diagram" id="coordDiagram"></div>
+        </div>
+        <ol class="mech-steps coord-steps">
+          <li>NH₃ بزوج منفرد على N، وأيون H⁺ بفلك فارغ</li>
+          <li>يتجه الزوج المنفرد من N نحو H⁺</li>
+          <li>الناتج [NH₄]⁺ — الزوج المشترك الجديد مصدره N وحدها</li>
+          <li>الصيغة البنائية: سهم N→H من المانح إلى المستقبل</li>
+        </ol>
+        <div class="mech-step" id="coordCaption">جاهز للتشغيل…</div>
+        <div class="mech-controls">
+          <button class="lab-btn primary" id="coordNext">▶ الخطوة التالية</button>
+          <button class="lab-btn ghost" id="coordReset">🔄 إعادة</button>
+        </div>
+        <div class="role-grid">
+          <div class="role-card donor"><strong>المانح: N</strong><small>يمتلك زوجًا منفردًا</small></div>
+          <div class="role-card acceptor"><strong>المستقبل: H⁺</strong><small>نقص في الإلكترونات — فلك شاغر</small></div>
+        </div>
+      </div>
+      <div class="prep-tabs" role="tablist">
+        <button class="prep-tab active" data-tab="co1" role="tab">NH₄⁺</button>
+        <button class="prep-tab" data-tab="co2" role="tab">Al₂Cl₆</button>
+      </div>
+      <div class="prep-pane active" id="co1">
+        <p>تتكوّن من التفاعل بين الأمونيا NH₃ وأيون الهيدروجين H⁺. يحتوي H⁺ على فلك فارغ في مستوى الطاقة الخارجي يتسع لإلكترونين، بينما تمتلك ذرة N زوجًا منفردًا يملأ هذا الفلك.</p>
+      </div>
+      <div class="prep-pane" id="co2">
+        <p>عند درجات الحرارة المرتفعة يكون كلوريد الألومنيوم على هيئة AlCl₃، وفيه حول Al ستة إلكترونات فقط (نقص). عند درجات الحرارة المنخفضة يندمج جزيئان من AlCl₃ لتكوين <strong>Al₂Cl₆</strong>: تمنح ذرتا Cl زوجين منفردين لذرتي Al فتتكوّن <strong>رابطتان تناسقيتان</strong> (الشكل 3-6).</p>
+        <div class="diagram">
+          <svg class="dc-svg" viewBox="-150 -80 300 160" direction="ltr" role="img" aria-label="الصيغة البنائية لـ Al₂Cl₆ مع رابطتين تناسقيتين">
+            <defs><marker id="alArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10z" class="arrow-fill" /></marker></defs>
+            <path class="bond" d="M-62 -10 L-98 -38 M-62 10 L-98 38 M62 -10 L98 -38 M62 10 L98 38 M-40 -10 L-10 -36 M40 10 L10 36" />
+            <path class="flow-arrow solid" d="M10 -36 L38 -12" marker-end="url(#alArr)" />
+            <path class="flow-arrow solid" d="M-10 36 L-38 12" marker-end="url(#alArr)" />
+            <text class="sym" x="-50" y="7">Al</text><text class="sym" x="50" y="7">Al</text>
+            <text class="sym" x="0" y="-44">Cl</text><text class="sym" x="0" y="58">Cl</text>
+            <text class="sym" x="-115" y="-44">Cl</text><text class="sym" x="-115" y="58">Cl</text>
+            <text class="sym" x="115" y="-44">Cl</text><text class="sym" x="115" y="58">Cl</text>
+          </svg>
+        </div>
+        <p class="hint-line">السهمان: رابطتان تناسقيتان من زوج منفرد على Cl إلى Al.</p>
+      </div>
+      <div class="callout warn">
+        <strong>⚠️ ملاحظة دقة:</strong> يرد في الصفحة المطبوعة 84 «أيون الهيدروجين (H⁻)» وهو خطأ طباعي؛ الصحيح <strong>H⁺</strong> كما في الشكل 3-4.
+      </div>
+      <div class="terms-card">
+        <h4>📖 مصطلحات علمية</h4>
+        <dl>
+          <dt>الرابطة التناسقية Co-ordinate bond</dt><dd>نوع خاص من الروابط التساهمية تحدث بين ذرّتين حيث تقوم إحداهما بمنح زوج (أو أكثر) من الإلكترونات الحرة لذرة أو أيون يمتلك فلكًا فارغًا (أو أكثر).</dd>
+          <dt>نقص في الإلكترونات Electron deficient</dt><dd>عندما يمتلك جسيم (ذرّة أو جزيء أو أيون) فلكًا ذريًا شاغرًا أو أكثر.</dd>
+        </dl>
+      </div>
+
+      <h3 class="step-h">3️⃣ المعقدات الفلزية — مقارنة</h3>
+      <div class="table-wrap">
+        <table class="data-table complex-table" id="complexTable">
+          <thead><tr><th>المعقد</th><th>الجسيم المانح</th><th>عدد الروابط التناسقية</th><th>الشحنة الكلية</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>[CuCl₄]²⁻</strong></td>
+              <td><select data-answer="cl" aria-label="الجسيم المانح في CuCl4"><option value="">اختر…</option><option value="cl">أيون الكلوريد Cl⁻ (سالب)</option><option value="h2o">جزيء الماء H₂O (متعادل)</option><option value="cu">أيون النحاس Cu²⁺</option></select></td>
+              <td><select data-answer="4" aria-label="عدد الروابط في CuCl4"><option value="">اختر…</option><option>2</option><option>4</option><option>6</option></select></td>
+              <td><select data-answer="-2" aria-label="الشحنة الكلية CuCl4"><option value="">اختر…</option><option value="+2">2+</option><option value="-2">2−</option><option value="0">صفر</option></select></td>
+            </tr>
+            <tr>
+              <td><strong>[Cu(H₂O)₆]²⁺</strong></td>
+              <td><select data-answer="h2o" aria-label="الجسيم المانح في Cu(H2O)6"><option value="">اختر…</option><option value="cl">أيون الكلوريد Cl⁻ (سالب)</option><option value="h2o">جزيء الماء H₂O (متعادل)</option><option value="cu">أيون النحاس Cu²⁺</option></select></td>
+              <td><select data-answer="6" aria-label="عدد الروابط في Cu(H2O)6"><option value="">اختر…</option><option>2</option><option>4</option><option>6</option></select></td>
+              <td><select data-answer="+2" aria-label="الشحنة الكلية Cu(H2O)6"><option value="">اختر…</option><option value="+2">2+</option><option value="-2">2−</option><option value="0">صفر</option></select></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="lab-btn primary" id="complexCheck">✔ تحقّق من الجدول</button>
+      <div class="sorter-result" id="complexResult" aria-live="polite"></div>
+      <div class="callout">
+        <strong>لماذا؟</strong> [CuCl₄]²⁻: Cu²⁺ + 4(−1) = −2 · [Cu(H₂O)₆]²⁺: الماء متعادل، فتبقى شحنة Cu²⁺ = +2.
+        <br /><small>📌 في الأشكال: الخطوط المتصلة في مستوى الورقة، والمتقطعة خلفها، والمثلثية أمامها.</small>
+      </div>
+
+      <h3 class="step-h">4️⃣ الرابطة الفلزية — بحر الإلكترونات</h3>
+      <div class="metal-card">
+        <canvas id="metalCanvas" width="640" height="300" aria-label="محاكاة أيونات فلز موجبة وإلكترونات غير متمركزة"></canvas>
+        <div class="metal-controls">
+          <button class="lab-btn primary" id="voltageBtn" aria-pressed="false">⚡ طبّق جهدًا كهربائيًا</button>
+          <label>شحنة الأيون: <output id="chargeOut">+1</output>
+            <input type="range" id="metalCharge" min="1" max="3" value="1" /></label>
+          <label>حجم الأيون: <output id="sizeOut">كبير</output>
+            <input type="range" id="metalSize" min="1" max="3" value="3" /></label>
+          <label>الإلكترونات غير المتمركزة لكل ذرة: <output id="elecOut">1</output>
+            <input type="range" id="metalElec" min="1" max="3" value="1" /></label>
+        </div>
+        <div class="strength-meter">
+          <span>شدة الترابط الفلزي:</span>
+          <div class="qbar"><div class="qbar-fill" id="strengthFill"></div></div>
+          <strong id="strengthText">ضعيفة</strong>
+        </div>
+        <p class="metal-note" id="metalNote" aria-live="polite">الإلكترونات تتحرك عشوائيًا في كل الاتجاهات.</p>
+      </div>
+      <div class="metal-examples">
+        <span>🧈 الصوديوم</span><span>🥇 الذهب</span><span>💧 الزئبق</span><span>⚪ المغنيسيوم</span><span>🟠 النحاس</span>
+      </div>
+      <div class="callout warn">
+        <strong>❌ مفهوم خاطئ شائع:</strong> «الإلكترونات في الفلز محصورة بين ذرتين». ✅ الصحيح: الإلكترونات <strong>غير متمركزة</strong> تتحرك عبر الشبكة الفلزية كلها. (للمقارنة: في جزيء البنزين حركة الإلكترونات غير المتمركزة محدودة بحلقة البنزين.)
+      </div>
+      <div class="terms-card">
+        <h4>📖 مصطلحات علمية</h4>
+        <dl>
+          <dt>الإلكترونات غير المتمركزة Delocalized electrons</dt><dd>الإلكترونات التي لا تكون مرتبطة بأيّة ذرّة أو رابطة محددة.</dd>
+          <dt>الرابطة الفلزية Metallic bonding</dt><dd>قوة جذب كهروستاتيكي بين أيونات الفلز الموجبة وإلكتروناته غير المتمركزة.</dd>
+        </dl>
+      </div>
+
+      <h3 class="step-h">5️⃣ لعبة التصنيف الرباعي — صنّف ثم اختر الدليل</h3>
+      <p class="hint-line">نشاط تصنيف مقترح، لا تجربة عملية.</p>
+      <div class="classify-list" id="classifyList"></div>
+      <div class="sorter-result" id="classifyResult" aria-live="polite"></div>
+      <div class="nabdh-slot" data-nabdh="activity" data-index="3"></div>
+
+      <h3 class="step-h">6️⃣ تقويم تكويني</h3>
+      <div class="quiz-card" data-award="f5">
+        <h4>💡 سؤال 5 · تحليل (الهدف 4)</h4>
+        <p>من أين يأتي زوج إلكترونات الرابطة الجديدة عند تكوين NH₄⁺؟</p>
+        <div class="options" data-correct="a">
+          <button data-opt="a">من الزوج المنفرد على N في NH₃</button>
+          <button data-opt="b">من أيون H⁺</button>
+          <button data-opt="c">إلكترون من كل ذرة</button>
+          <button data-opt="d">من الإلكترونات غير المتمركزة</button>
+        </div>
+        <div class="feedback" hidden data-wrong="H⁺ لا يملك إلكترونات؛ راجع اتجاه السهم من N نحو H⁺."></div>
+      </div>
+
+      <div class="next-arrow"><a href="#games">⬇ انتقل للأنشطة التفاعلية</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 11 · GAMES ============================ -->
+  <section id="games" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">11</span>
+        <h2>🎮 الأنشطة التفاعلية</h2>
+        <p class="section-sub">لعبة من منصة نبض، وأنشطة Wordwall وKahoot.</p>
+      </div>
+
+      <div class="nabdh-slot" data-nabdh="game" data-phase="during"></div>
+
+      <div class="games-grid">
+        <article class="game-card wordwall">
+          <div class="game-icon">🧩</div>
+          <h3>Wordwall — Group Sort</h3>
+          <p>تصنيف 16 مادة إلى أيوني/تساهمي/تناسقي/فلزي.</p>
+          <button class="link-btn" type="button" data-later>افتح النشاط</button>
+        </article>
+        <article class="game-card wordwall">
+          <div class="game-icon">🧠</div>
+          <h3>Wordwall — Match-Up</h3>
+          <p>الجزيء ↔ عدد الأزواج (Cl₂↔1، O₂↔2، N₂↔3، H₂O↔2 منفرد، NH₃↔1 منفرد).</p>
+          <button class="link-btn" type="button" data-later>افتح النشاط</button>
+        </article>
+        <article class="game-card kahoot">
+          <div class="game-icon">⚡</div>
+          <h3>Kahoot — Lightning</h3>
+          <p>12 سؤالًا سريعًا من الدرس.</p>
+          <button class="link-btn" type="button" data-later>افتح النشاط</button>
+        </article>
+      </div>
+
+      <div class="next-arrow"><a href="#tutor">⬇ انتقل للمساعد الذكي</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 12 · TUTOR ============================ -->
+  <section id="tutor" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">12</span>
+        <h2>🤖 المساعد الذكي</h2>
+        <p class="section-sub">معلّم افتراضي بإجابات جاهزة عن أهم أسئلة الدرس.</p>
+      </div>
+
+      <div class="tutor-grid">
+        <aside class="tutor-presets">
+          <h4>أسئلة سريعة جاهزة</h4>
+          <button class="preset-q" data-q="ionic-covalent">🔘 ما الفرق بين الأيوني والتساهمي؟</button>
+          <button class="preset-q" data-q="draw">🔘 كيف أرسم مخطط التمثيل النقطي؟</button>
+          <button class="preset-q" data-q="lone">🔘 ما الزوج المنفرد؟</button>
+          <button class="preset-q" data-q="octet">🔘 لماذا لا تحقق BF₃ وSF₆ قاعدة الثمانية؟</button>
+          <button class="preset-q" data-q="coord">🔘 ما الرابطة التناسقية؟</button>
+          <button class="preset-q" data-q="metal">🔘 لماذا توصل الفلزات الكهرباء؟</button>
+        </aside>
+
+        <div class="tutor-chat">
+          <div class="chat-log" id="chatLog" aria-live="polite">
+            <div class="msg bot">👋 أهلاً! اسألني عن أنواع الترابط الكيميائي.</div>
+          </div>
+          <form class="chat-form" id="chatForm" autocomplete="off">
+            <input id="chatInput" type="text" placeholder="اكتب سؤالك هنا…" aria-label="اكتب سؤالك" />
+            <button type="submit" aria-label="إرسال">📨</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="next-arrow"><a href="#quiz">⬇ انتقل للتقييم النهائي</a></div>
+    </div>
+  </section>
+
+  <!-- ============================ 13 · QUIZ ============================ -->
+  <section id="quiz" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">13</span>
+        <h2>📝 التقييم النهائي</h2>
+        <p class="section-sub">10 أسئلة متدرّجة وفق بلوم · علامة النجاح <strong>70%</strong>.</p>
+      </div>
+
+      <div class="quiz-intro" id="quizIntro">
+        <ul class="quiz-stats">
+          <li><strong>📋</strong> 10 أسئلة (اختيار من متعدد)</li>
+          <li><strong>💬</strong> تغذية راجعة لكل سؤال</li>
+          <li><strong>🎯</strong> 5 نقاط لكل إجابة صحيحة</li>
+          <li><strong>🏆</strong> 70% فأعلى = شهادة إتقان</li>
+        </ul>
+        <button class="cta-btn" id="startQuiz">🚀 ابدأ الاختبار</button>
+      </div>
+
+      <div class="quiz-stage" id="quizStage" hidden>
+        <div class="quiz-progress">
+          <span id="qPos">1</span> / <span id="qTotal">10</span>
+          <div class="qbar"><div class="qbar-fill" id="qbarFill"></div></div>
+        </div>
+        <div class="qbox" id="qbox"></div>
+        <div class="quiz-controls">
+          <button class="lab-btn ghost" id="qPrev">السابق ←</button>
+          <button class="lab-btn primary" id="qNext">→ التالي</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quizResult" hidden>
+        <h3 id="qrTitle"></h3>
+        <div class="qr-score" id="qrScore"></div>
+        <p id="qrMsg"></p>
+        <div class="qr-actions">
+          <button class="lab-btn ghost" id="qrRetry">🔁 أعد المحاولة</button>
+          <a href="#certificate" class="lab-btn primary" id="qrCert">🏆 احصل على الشهادة</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 14 · CERTIFICATE ============================ -->
+  <section id="certificate" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">14</span>
+        <h2>🏆 شهادة الإتقان</h2>
+        <p class="section-sub">تُفتح بعد اجتياز التقييم النهائي بنسبة <strong>70% فأعلى</strong>.</p>
+      </div>
+
+      <p class="callout" id="certLocked">🔒 اجتز التقييم النهائي أولًا لإصدار الشهادة.</p>
+
+      <div class="cert-form" id="certFormWrap">
+        <label>اسم الطالب/ة:
+          <input id="certName" type="text" placeholder="اكتب اسمك الكامل" />
+        </label>
+        <button class="lab-btn primary" id="renderCert">🖋 إصدار الشهادة</button>
+      </div>
+
+      <div class="cert" id="certCard">
+        <div class="cert-frame">
+          <div class="cert-corner tl"></div>
+          <div class="cert-corner tr"></div>
+          <div class="cert-corner bl"></div>
+          <div class="cert-corner br"></div>
+
+          <div class="cert-header">
+            <img src="assets/images/school-logo.png" alt="شعار المدرسة" class="cert-school-logo-img" />
+            <div>
+              <strong>مدرسة الإمام محمد بن عبدالله الخليلي</strong>
+              <em>Imam Muhammad bin Abdullah Al-Khalili School</em>
+            </div>
+          </div>
+
+          <h3 class="cert-title">🏆 شهادة إتقان</h3>
+          <small class="cert-en">Certificate of Mastery</small>
+
+          <p class="cert-body">
+            تشهد مدرسة الإمام محمد بن عبدالله الخليلي بأن الطالب/ـة:
+            <strong id="certNameOut">— — —</strong>
+            قد أتقن/ت درس <em>«أنواع الترابط الكيميائي (3-1)»</em>
+            من مقرر الكيمياء للصف الحادي عشر بنسبة:
+            <strong id="certScore">__%</strong>
+          </p>
+
+          <div class="cert-meta">
+            <div><span>📅 التاريخ الميلادي</span><strong id="certDateG">—</strong></div>
+            <div><span>🌙 التاريخ الهجري</span><strong id="certDateH">—</strong></div>
+            <div><span>🔢 الرقم التسلسلي</span><strong id="certSerial">—</strong></div>
+          </div>
+
+          <div class="cert-footer">
+            <div class="cert-sig"><hr /><small>توقيع المعلّم</small></div>
+            <div class="cert-qr" id="certQr"></div>
+          </div>
+        </div>
+        <div class="cert-actions">
+          <button class="lab-btn ghost" id="printCert">🖨 طباعة الشهادة</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 15 · DASHBOARD ============================ -->
+  <section id="dashboard" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">15</span>
+        <h2>📊 لوحة تتبّع التقدّم</h2>
+        <p class="section-sub">يُحفظ تقدّمك تلقائيًا في متصفحك.</p>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-card">
+          <h4>📌 إكمال الأقسام</h4>
+          <ul class="dash-sections" id="dashSections"></ul>
+        </div>
+
+        <div class="dash-card">
+          <h4>🏅 الشارات المكتسبة</h4>
+          <div class="dash-badges" id="dashBadges">
+            <div class="d-badge" data-badge="ions"><span>🧂</span><small>صائد الأيونات</small></div>
+            <div class="d-badge" data-badge="painter"><span>🎨</span><small>رسّام الإلكترونات</small></div>
+            <div class="d-badge" data-badge="rules"><span>🧮</span><small>كاسر القواعد</small></div>
+            <div class="d-badge" data-badge="sorter"><span>🔗</span><small>سيد التصنيف</small></div>
+            <div class="d-badge" data-badge="expert"><span>🏆</span><small>خبير الترابط</small></div>
+          </div>
+          <ul class="badge-rules">
+            <li>🧂 إنهاء حركة K₂O</li>
+            <li>🎨 إتمام منشئ المخطط (6 جزيئات)</li>
+            <li>🧮 إتمام مستكشف الثمانية (6 جزيئات)</li>
+            <li>🔗 التصنيف الرباعي 8/8 من المحاولة الأولى</li>
+            <li>🏆 التقييم النهائي 90% فأعلى</li>
+          </ul>
+        </div>
+
+        <div class="dash-card">
+          <h4>🎯 النقاط الإجمالية</h4>
+          <div class="score-big"><span id="dashScore">0</span> / 120</div>
+          <div class="qbar"><div class="qbar-fill" id="dashScoreBar"></div></div>
+          <small>التقييم النهائي 50 · منشئ المخطط 30 · التصنيف 16 · الثمانية 12 · التكويني 10 · K₂O 2</small>
+        </div>
+
+        <div class="dash-card">
+          <button class="lab-btn ghost" id="resetProgress">🔄 إعادة تعيين تقدّمي</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 16 · REFS ============================ -->
+  <section id="refs" class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">16</span>
+        <h2>📖 الدليل والمراجع</h2>
+        <p class="section-sub">دليل الاستخدام، والواجب، ورسالة الأسرة، والمراجع.</p>
+      </div>
+
+      <div class="refs-grid">
+        <div class="refs-card">
+          <h3>📌 دليل الاستخدام السريع</h3>
+          <ol class="guide-list">
+            <li><strong>التنقّل:</strong> زر «المحتوى» أعلى الصفحة، أو الأسهم <kbd>←</kbd> <kbd>→</kbd>.</li>
+            <li><strong>المختبرات:</strong> اسحب الإلكترونات أو اضغطها ثم اضغط الخانة.</li>
+            <li><strong>الإعدادات:</strong> <code>A+ / A−</code> لحجم الخط، و<code>🌙</code> للوضع الداكن.</li>
+            <li><strong>تقدّمك يُحفظ تلقائيًا</strong> في متصفحك، ويمكن إعادة تعيينه من لوحة التقدّم.</li>
+          </ol>
+        </div>
+
+        <div class="refs-card">
+          <h3>🏠 الواجب المنزلي</h3>
+          <p><strong>سؤال الكتاب ص78 (س1-أ):</strong> ارسم مخطط التمثيل النقطي لـ CaF₂.</p>
+          <p><small>مؤشر التصحيح: Ca²⁺ وأيونان F⁻، لكل F مستوى خارجي مكتمل، مع الأقواس والشحنات.</small></p>
+          <p><strong>مراجعة اختيارية:</strong> قارن انتقال الإلكترونات في K₂O بمشاركتها في Cl₂ في جملتين.</p>
+          <h3>👪 رسالة للأسرة</h3>
+          <p>سيتعلم ابنكم/ابنتكم كيف تتكون الروابط الأيونية والتساهمية والتناسقية والفلزية، وكيف يقرأ مخططات التمثيل النقطي ويرسمها. شجعوه على شرح رسمه بالكلمات، وتابعوا مراجعته المستقلة دون رسم الإجابة عنه.</p>
+        </div>
+
+        <div class="refs-card">
+          <h3>🔗 المراجع (APA 7)</h3>
+          <ol class="refs-list">
+            <li>وزارة التربية والتعليم — سلطنة عُمان (2024). <em>الكيمياء: الصف الحادي عشر، الفصل الدراسي الأول — كتاب الطالب</em>، الوحدة الثالثة: الترابط الكيميائي (ص 77–86).</li>
+            <li>Anderson, L. W., &amp; Krathwohl, D. R. (Eds.). (2001). <em>A taxonomy for learning, teaching, and assessing: A revision of Bloom's taxonomy of educational objectives</em>. Longman.</li>
+            <li>Mayer, R. E. (2021). <em>Multimedia learning</em> (3rd ed.). Cambridge University Press.</li>
+            <li>Wang, A. I., &amp; Tahir, R. (2020). The effect of using Kahoot! for learning – A literature review. <em>Computers &amp; Education, 149</em>, 103818.</li>
+          </ol>
+        </div>
+      </div>
+
+      <p class="copyright">
+        © 2026 درس تفاعلي · الكيمياء 3-1 · سلطنة عُمان
+        <br /><strong>مدرسة الإمام محمد بن عبدالله الخليلي</strong>
+      </p>
+    </div>
+  </section>
+
+  <a href="#tutor" class="fab-tutor" data-slide="tutor" aria-label="افتح المساعد الذكي">🤖</a>
+
+  <div class="vq-modal" id="vqModal" aria-hidden="true" role="dialog" aria-modal="true"></div>
+
+  <nav class="slide-nav" aria-label="تنقل الشرائح">
+    <button class="slide-arrow prev" id="prevSlide" aria-label="الشريحة السابقة" disabled>
+      <strong>›</strong>
+      <span>السابقة</span>
+    </button>
+    <button class="slide-arrow next" id="nextSlide" aria-label="الشريحة التالية">
+      <span>التالية</span>
+      <strong>‹</strong>
+    </button>
+  </nav>
+
+  <script src="assets/js/diagrams.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/nabdh.js"></script>
+</body>
+</html>
