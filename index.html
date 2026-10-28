@@ -270,7 +270,7 @@
       <!-- 3: ionic K2O -->
       <h3 class="step-h">3️⃣ الرابطة الأيونية — تكوّن K₂O خطوة بخطوة</h3>
       <div class="mechanism-stage k2o-stage">
-        <svg id="k2oSvg" class="k2o" viewBox="0 0 520 260" direction="ltr" role="img" aria-label="انتقال إلكترون من كل ذرة بوتاسيوم إلى ذرة الأكسجين">
+        <svg id="k2oSvg" class="k2o" viewBox="0 0 520 266" direction="ltr" role="img" aria-label="انتقال إلكترون من كل ذرة بوتاسيوم إلى ذرة الأكسجين">
           <defs>
             <marker id="arrHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" class="arrow-fill" /></marker>
           </defs>
@@ -278,32 +278,34 @@
           <g class="atom-k" id="k2oK1">
             <circle cx="90" cy="70" r="42" class="shell" />
             <text x="90" y="76" class="sym">K</text>
-            <text x="90" y="128" class="cfg" id="k2oCfgK1">2,8,8,1</text>
+            <text x="90" y="134" class="cfg" id="k2oCfgK1">2,8,8,1</text>
           </g>
           <g class="atom-k" id="k2oK2">
             <circle cx="90" cy="190" r="42" class="shell" />
             <text x="90" y="196" class="sym">K</text>
-            <text x="90" y="248" class="cfg" id="k2oCfgK2">2,8,8,1</text>
+            <text x="90" y="254" class="cfg" id="k2oCfgK2">2,8,8,1</text>
           </g>
           <g class="atom-o">
             <circle cx="380" cy="130" r="52" class="shell" />
             <text x="380" y="137" class="sym">O</text>
             <text x="380" y="205" class="cfg" id="k2oCfgO">2,6</text>
-            <!-- 6 own electrons (•) -->
-            <circle class="e-dot" cx="380" cy="78" r="5" /><circle class="e-dot" cx="394" cy="80" r="5" />
-            <circle class="e-dot" cx="432" cy="124" r="5" /><circle class="e-dot" cx="432" cy="138" r="5" />
-            <circle class="e-dot" cx="380" cy="182" r="5" /><circle class="e-dot" cx="394" cy="180" r="5" />
+            <!-- 6 own electrons (•): two lone pairs (top, right) and two single electrons (left, bottom) -->
+            <circle class="e-dot" cx="373" cy="78" r="5" /><circle class="e-dot" cx="387" cy="78" r="5" />
+            <circle class="e-dot" cx="432" cy="123" r="5" /><circle class="e-dot" cx="432" cy="137" r="5" />
+            <circle class="e-dot" cx="328" cy="123" r="5" />
+            <circle class="e-dot" cx="373" cy="182" r="5" />
           </g>
           <!-- transferred electrons (×) -->
-          <g class="e-cross k2o-move" id="k2oE1" data-tx="198" data-ty="54"><path d="M126 66 l8 8 M134 66 l-8 8" /></g>
-          <g class="e-cross k2o-move" id="k2oE2" data-tx="198" data-ty="-52"><path d="M126 186 l8 8 M134 186 l-8 8" /></g>
-          <path id="k2oArr1" class="flow-arrow" d="M140 80 Q 240 70 320 118" marker-end="url(#arrHead)" />
-          <path id="k2oArr2" class="flow-arrow" d="M140 180 Q 240 190 320 142" marker-end="url(#arrHead)" />
+          <g class="e-cross k2o-move" id="k2oE1" data-tx="198" data-ty="67"><path d="M126 66 l8 8 M134 66 l-8 8" /></g>
+          <g class="e-cross k2o-move" id="k2oE2" data-tx="257" data-ty="-8"><path d="M126 186 l8 8 M134 186 l-8 8" /></g>
+          <path id="k2oArr1" class="flow-arrow" d="M140 74 Q 240 80 316 132" marker-end="url(#arrHead)" />
+          <path id="k2oArr2" class="flow-arrow" d="M140 200 Q 270 214 380 194" marker-end="url(#arrHead)" />
           <!-- brackets -->
           <g class="brackets" id="k2oBr">
-            <path d="M40 20 h-10 v220 h10 M140 20 h10 v220 h-10" />
-            <text x="160" y="30" class="charge">+</text>
-            <text x="20" y="135" class="coef">2</text>
+            <path d="M44 22 h-10 v96 h10 M136 22 h10 v96 h-10" />
+            <text x="152" y="34" class="charge">+</text>
+            <path d="M44 142 h-10 v96 h10 M136 142 h10 v96 h-10" />
+            <text x="152" y="154" class="charge">+</text>
             <path d="M318 68 h-10 v124 h10 M442 68 h10 v124 h-10" />
             <text x="462" y="78" class="charge">2−</text>
           </g>
@@ -311,7 +313,7 @@
         <ol class="mech-steps k2o-steps">
           <li>ذرتا K (2,8,8,1) وذرة O (2,6)</li>
           <li>كل ذرة K تنقل إلكترونها الخارجي إلى O</li>
-          <li>تتكوّن أيونات: 2[K]⁺ و[O]²⁻</li>
+          <li>يتكوّن أيونان [K]⁺ وأيون [O]²⁻</li>
           <li>2K⁺ + O²⁻ → K₂O · الشحنة الكلية صفر ✓</li>
         </ol>
         <div class="mech-step" id="k2oCaption">جاهز للتشغيل…</div>
@@ -566,12 +568,11 @@
         <p>رابطتان ثنائيتان <code>O=C=O</code>؛ زوجان منفردان على كل O ولا أزواج منفردة على C.</p>
       </div>
       <div class="prep-pane" id="dbl2">
-        <pre class="reaction">  H       H
-   \     /
-    C = C
-   /     \
-  H       H</pre>
-        <p>رابطة ثنائية بين ذرتي الكربون <code>C=C</code>، وأربع روابط أحادية C–H.</p>
+        <div class="pair-diagrams">
+          <div class="diagram"><svg class="dc-svg" viewBox="-130 -110 260 220" direction="ltr" role="img" aria-label="مخطط التمثيل النقطي لجزيء الإيثين C₂H₄"><circle class="shell" cx="-34" cy="0" r="40"/><circle class="shell" cx="34" cy="0" r="40"/><circle class="shell" cx="-63.8" cy="42.6" r="32"/><circle class="e-dot" cx="-48.6" cy="20.9" r="4.2"/><path class="e-cross" d="M-57.8 24.3 l8 8 M-49.8 24.3 l-8 8"/><circle class="shell" cx="-63.8" cy="-42.6" r="32"/><circle class="e-dot" cx="-48.6" cy="-20.9" r="4.2"/><path class="e-cross" d="M-57.8 -32.3 l8 8 M-49.8 -32.3 l-8 8"/><circle class="shell" cx="63.8" cy="42.6" r="32"/><circle class="e-dot" cx="48.6" cy="20.9" r="4.2"/><path class="e-cross" d="M49.8 24.3 l8 8 M57.8 24.3 l-8 8"/><circle class="shell" cx="63.8" cy="-42.6" r="32"/><circle class="e-dot" cx="48.6" cy="-20.9" r="4.2"/><path class="e-cross" d="M49.8 -32.3 l8 8 M57.8 -32.3 l-8 8"/><circle class="e-dot" cx="-4.5" cy="-11" r="4.2"/><circle class="e-dot" cx="4.5" cy="-11" r="4.2"/><circle class="e-dot" cx="-4.5" cy="11" r="4.2"/><circle class="e-dot" cx="4.5" cy="11" r="4.2"/><text class="sym" x="-42" y="7">C</text><text class="sym" x="42" y="7">C</text><text class="sym" x="-63.8" y="49.6">H</text><text class="sym" x="-63.8" y="-35.6">H</text><text class="sym" x="63.8" y="49.6">H</text><text class="sym" x="63.8" y="-35.6">H</text></svg></div>
+          <div class="diagram"><svg class="dc-svg" viewBox="-110 -70 220 140" direction="ltr" role="img" aria-label="الصيغة البنائية للإيثين"><text class="sym" x="-30" y="7">C</text><text class="sym" x="30" y="7">C</text><text class="sym" x="-80" y="-45">H</text><text class="sym" x="-80" y="59">H</text><text class="sym" x="80" y="-45">H</text><text class="sym" x="80" y="59">H</text><path class="bond" d="M-16 -5 H16 M-16 5 H16 M-40 -10 L-70 -36 M-40 12 L-70 40 M40 -10 L70 -36 M40 12 L70 40"/></svg></div>
+        </div>
+        <p>كل ذرة C (2,4) تشارك بإلكترونين مع ذرة C الأخرى ← <strong>رابطة ثنائية C=C</strong>، وبإلكترون مع كل ذرة H ← رابطتان أحاديتان C–H. المجموع: رابطة ثنائية وأربع روابط أحادية، ولا أزواج منفردة.</p>
       </div>
       <div class="prep-pane" id="dbl3">
         <div class="diagram" data-diagram="SO2"></div>
