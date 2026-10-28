@@ -81,7 +81,6 @@ python -m http.server 8080
 1. وزارة التربية والتعليم — سلطنة عُمان (2024). *الكيمياء: الصف الحادي عشر، الفصل الدراسي الأول — كتاب الطالب*.
 2. Anderson, L. W., & Krathwohl, D. R. (Eds.). (2001). *A taxonomy for learning, teaching, and assessing*. Longman.
 3. Mayer, R. E. (2021). *Multimedia learning* (3rd ed.). Cambridge University Press.
-4. Wang, A. I., & Tahir, R. (2020). The effect of using Kahoot! for learning – A literature review. *Computers & Education, 149*, 103818.
 
 ---
 
