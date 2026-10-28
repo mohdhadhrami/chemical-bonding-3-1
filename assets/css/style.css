@@ -2640,3 +2640,4 @@ h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 800; line-height: 1
 }
 .f { unicode-bidi: isolate; direction: ltr; }
 .pair-diagrams { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; align-items: center; }
+.video-link { text-align: center; margin: 0 0 14px; }

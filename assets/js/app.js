@@ -239,10 +239,6 @@
     });
   });
 
-  document.querySelectorAll('[data-later]').forEach(btn => {
-    btn.addEventListener('click', () => toast('سيُرفق الرابط لاحقاً من قِبل المعلّم'));
-  });
-
   // Static diagrams
   document.querySelectorAll('.diagram[data-diagram]').forEach(el => {
     el.innerHTML = window.Diagrams.render(el.dataset.diagram);
@@ -1063,25 +1059,33 @@
   refreshCert();
 
   // -----------------------------------------------------------------
-  // 16. Interactive video (YouTube IFrame API). Set the IDs below; while
-  //     they are REPLACE_ME the questions are answered without the video.
+  // 16. Interactive video (YouTube IFrame API). The questions sit under
+  //     each video and are offered when it ends. A question with a `time`
+  //     (seconds) also pauses the video at that moment.
   // -----------------------------------------------------------------
-  const VIDEO_IDS = { video1: 'REPLACE_ME', video2: 'REPLACE_ME' };
+  const VIDEO_IDS = { video1: 'EYUfyjaA5W8', video2: 'VMC7moKmk-s', video3: 'DUDsrmRqBeU' };
   const VIDEO_QUESTIONS = {
     video1: [
-      { time: 30, q: 'ما الجسيم الذي ينتقل عند تكوّن رابطة أيونية؟', opts: ['البروتون', 'الإلكترون (من الفلز إلى اللافلز)', 'النيوترون', 'النواة'], correct: 1, explain: 'تنتقل الإلكترونات من الفلز إلى اللافلز.' },
-      { time: 60, q: 'ذرة Na تفقد إلكترونًا فتصبح…', opts: ['أنيون Na⁻', 'ذرة متعادلة', 'كاتيون Na⁺', 'جزيء Na₂'], correct: 2, explain: 'فقدان إلكترون ← شحنة موجبة ← كاتيون.' },
-      { time: 105, q: 'لماذا نستخدم • و× في المخطط؟', opts: ['لتمييز مصدر الإلكترونات', 'لتمييز البروتونات', 'للزينة فقط', 'لتمييز المستويات الداخلية'], correct: 0, explain: '• لذرة و× لأخرى لمعرفة مصدر كل إلكترون.' },
-      { time: 135, q: 'كم زوجًا مشتركًا في جزيء Cl₂؟', opts: ['صفر', 'زوج واحد', 'زوجان', 'ثلاثة'], correct: 1, explain: 'رابطة أحادية: زوج مشترك واحد.' },
+      { q: 'ما الجسيم الذي ينتقل عند تكوّن رابطة أيونية؟', opts: ['البروتون', 'الإلكترون (من الفلز إلى اللافلز)', 'النيوترون', 'النواة'], correct: 1, explain: 'تنتقل الإلكترونات من الفلز إلى اللافلز.' },
+      { q: 'ذرة Na تفقد إلكترونًا فتصبح…', opts: ['أنيون Na⁻', 'ذرة متعادلة', 'كاتيون Na⁺', 'جزيء Na₂'], correct: 2, explain: 'فقدان إلكترون ← شحنة موجبة ← كاتيون.' },
+      { q: 'ما القوة التي تمسك الأيونات معًا في الشبكة الأيونية؟', opts: ['مشاركة أزواج الإلكترونات', 'الجذب الكهروستاتيكي بين أيونات متعاكسة الشحنة', 'الإلكترونات غير المتمركزة', 'الجاذبية الأرضية'], correct: 1, explain: 'الرابطة الأيونية جذب كهروستاتيكي بين الكاتيونات والأنيونات.' },
+      { q: 'لماذا نستخدم • و× في مخطط التمثيل النقطي؟', opts: ['لتمييز مصدر الإلكترونات', 'لتمييز البروتونات', 'للزينة فقط', 'لتمييز المستويات الداخلية'], correct: 0, explain: '• لذرة و× لأخرى لمعرفة مصدر كل إلكترون.' },
     ],
     video2: [
-      { time: 30, q: 'كم زوجًا مشتركًا في N₂؟', opts: ['1', '2', '3', '4'], correct: 2, explain: 'رابطة ثلاثية N≡N.' },
-      { time: 60, q: 'ما الصيغة البنائية لـ CO₂؟', opts: ['O–C–O', 'O=C=O', 'O≡C–O', 'C=O=O'], correct: 1, explain: 'رابطتان ثنائيتان.' },
-      { time: 105, q: 'كم إلكترونًا حول S في SF₆؟', opts: ['6', '8', '10', '12'], correct: 3, explain: 'ست روابط × 2 = 12.' },
-      { time: 135, q: 'هل يحقق H₂ قاعدة الثمانية؟', opts: ['نعم', 'لا — لكل H إلكترونان مثل He'], correct: 1, explain: 'الهيدروجين يكتفي بإلكترونين.' },
+      { q: 'كم زوجًا مشتركًا في جزيء Cl₂؟', opts: ['صفر', 'زوج واحد', 'زوجان', 'ثلاثة'], correct: 1, explain: 'رابطة أحادية: زوج مشترك واحد.' },
+      { q: 'ماذا يُسمّى زوج إلكترونات المستوى الخارجي الذي لا يشارك في الترابط؟', opts: ['زوج مشترك', 'زوج منفرد', 'رابطة تناسقية', 'أيون'], correct: 1, explain: 'الزوج المنفرد لا يشارك في الترابط، مثل الزوج على N في NH₃.' },
+      { q: 'كم زوجًا مشتركًا في N₂؟', opts: ['1', '2', '3', '4'], correct: 2, explain: 'رابطة ثلاثية N≡N.' },
+      { q: 'ما الصيغة البنائية لـ CO₂؟', opts: ['O–C–O', 'O=C=O', 'O≡C–O', 'C=O=O'], correct: 1, explain: 'رابطتان ثنائيتان.' },
+    ],
+    video3: [
+      { q: 'ما الذي تحتاجه الرابطة التناسقية؟', opts: ['ذرتان تفقدان إلكترونات', 'ذرة مانحة بزوج منفرد وذرة أو أيون مستقبل بفلك فارغ', 'فلزان متجاوران', 'أيونان متعاكسا الشحنة'], correct: 1, explain: 'المانح يقدّم الزوجين كليهما، والمستقبل يملك فلكًا شاغرًا.' },
+      { q: 'في تكوين NH₄⁺، الذرة المانحة للزوج هي:', opts: ['H⁺', 'N', 'كل ذرات H', 'لا يوجد مانح'], correct: 1, explain: 'N تمنح زوجها المنفرد لأيون H⁺.' },
+      { q: 'كيف تُمثَّل الرابطة التناسقية في الصيغة البنائية؟', opts: ['بخطين متوازيين', 'بسهم من الذرة المانحة نحو المستقبلة', 'بخط متقطع بلا اتجاه', 'بأقواس مربعة'], correct: 1, explain: 'السهم يبدأ من الزوج المنفرد ويتجه نحو الفلك الشاغر.' },
+      { q: 'لماذا شحنة المعقد [Cu(H₂O)₆] هي 2+؟', opts: ['لأن الماء يحمل شحنة موجبة', 'لأن جزيئات الماء متعادلة فتبقى شحنة Cu²⁺', 'لأن كل رابطة تضيف شحنة', 'لأن Cu يفقد إلكترونين للماء'], correct: 1, explain: 'الماء متعادل، فشحنة المعقد هي شحنة أيون النحاس Cu²⁺.' },
     ],
   };
-  const vqAnswered = { video1: new Set(), video2: new Set() };
+  const vqAnswered = {};
+  Object.keys(VIDEO_QUESTIONS).forEach(id => (vqAnswered[id] = new Set()));
   function vqProgress(id) {
     const el = document.getElementById('vqProg-' + id);
     if (el) el.textContent = `❓ ${vqAnswered[id].size}/${VIDEO_QUESTIONS[id].length} أسئلة`;
@@ -1090,7 +1094,7 @@
     const card = document.createElement('div');
     card.className = 'quiz-card vq-inline';
     const h = document.createElement('h4');
-    h.textContent = `سؤال ${i + 1}${VIDEO_IDS[id] !== 'REPLACE_ME' ? ' · ⏱ ' + Math.floor(q.time / 60) + ':' + String(q.time % 60).padStart(2, '0') : ''}`;
+    h.textContent = `سؤال ${i + 1}`;
     const p = document.createElement('p');
     p.textContent = q.q;
     const opts = document.createElement('div');
@@ -1125,12 +1129,13 @@
     const host = document.querySelector(`.video-host[data-video="${id}"]`);
     const list = document.querySelector(`[data-vq-list="${id}"]`);
     if (!host || !list) return;
-    if (VIDEO_IDS[id] === 'REPLACE_ME') {
-      host.innerHTML = '<div class="placeholder-card"><div class="ph-icon">🎬</div><strong>الفيديو التفاعلي</strong><small>سيُرفق رابط الفيديو لاحقاً — أجب عن الأسئلة أدناه.</small></div>';
-      VIDEO_QUESTIONS[id].forEach((q, i) => list.appendChild(buildQuestionCard(id, q, i)));
-    } else {
-      host.innerHTML = `<div class="video-player-wrap"><div id="player-${id}"></div></div>`;
-    }
+    host.innerHTML = `<div class="video-player-wrap"><div id="player-${id}"></div></div>` +
+      `<p class="video-link"><a href="https://youtu.be/${VIDEO_IDS[id]}" target="_blank" rel="noopener">↗ افتح المقطع في YouTube</a></p>`;
+    const head = document.createElement('h3');
+    head.className = 'step-h';
+    head.textContent = '❓ أسئلة المقطع';
+    list.appendChild(head);
+    VIDEO_QUESTIONS[id].forEach((q, i) => list.appendChild(buildQuestionCard(id, q, i)));
     vqProgress(id);
   });
 
@@ -1163,22 +1168,33 @@
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
   }
+  function videoEnded(id) {
+    const left = VIDEO_QUESTIONS[id].length - vqAnswered[id].size;
+    if (!left) return;
+    toast(`🎬 انتهى المقطع — أجب عن ${left} من أسئلة المقطع أدناه`);
+    const list = document.querySelector(`[data-vq-list="${id}"]`);
+    const section = list.closest('.section');
+    section.scrollTo({ top: list.offsetTop - 80, behavior: 'smooth' });
+  }
   onSlide(slideId => {
     Object.values(ytPlayers).forEach(p => { try { p.pauseVideo(); } catch { /* ignore */ } });
     if (ytTimer) { clearInterval(ytTimer); ytTimer = null; }
-    if (!VIDEO_QUESTIONS[slideId] || VIDEO_IDS[slideId] === 'REPLACE_ME') return;
+    if (!VIDEO_QUESTIONS[slideId]) return;
     ensureYT(() => {
       if (!ytPlayers[slideId]) {
         ytPlayers[slideId] = new YT.Player('player-' + slideId, {
           videoId: VIDEO_IDS[slideId],
           playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+          events: { onStateChange: e => { if (e.data === YT.PlayerState.ENDED) videoEnded(slideId); } },
         });
       }
       const player = ytPlayers[slideId];
+      const timed = VIDEO_QUESTIONS[slideId].map((q, i) => [q, i]).filter(([q]) => typeof q.time === 'number');
+      if (!timed.length) return;
       ytTimer = setInterval(() => {
         if (!player.getCurrentTime || player.getPlayerState() !== 1) return;
         const t = player.getCurrentTime();
-        VIDEO_QUESTIONS[slideId].forEach((q, i) => {
+        timed.forEach(([q, i]) => {
           if (!vqAnswered[slideId].has(i) && t >= q.time && !document.getElementById('vqModal').classList.contains('open')) {
             player.pauseVideo();
             openVQ(slideId, q, i, player);

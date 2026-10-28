@@ -4,6 +4,7 @@
    sending the lesson package) and fills every .nabdh-slot:
      data-nabdh="activity" data-index="N"  → the class's activity N
      data-nabdh="game"     data-phase="…"  → the first game of that phase
+     data-nabdh="games"                    → every game in the package
    Without the file every slot says the activity opens in class.
    ============================================================ */
 (function () {
@@ -145,7 +146,18 @@
   function fill() {
     const cls = setup ? setup.classes[classIdx] : null;
     slots.forEach(slot => {
-      if (slot.dataset.nabdh === 'game') {
+      if (slot.dataset.nabdh === 'games') {
+        // every game in the package, in its order
+        const games = setup ? setup.games : [];
+        if (!games.length) return placeholder(slot, 'game');
+        const wrap = document.createElement('div');
+        slot.replaceChildren(wrap);
+        games.forEach(g => {
+          const one = document.createElement('div');
+          wrap.appendChild(one);
+          renderGame(one, g);
+        });
+      } else if (slot.dataset.nabdh === 'game') {
         const g = setup && setup.games.find(x => x.phase === (slot.dataset.phase || 'during'));
         g ? renderGame(slot, g) : placeholder(slot, 'game');
       } else {
