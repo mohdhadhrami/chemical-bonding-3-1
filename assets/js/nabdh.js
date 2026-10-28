@@ -167,12 +167,20 @@
     });
   }
 
+  // The class comes from the link (?class=…) and is then locked; otherwise the student picks it.
   function pickClass() {
     const names = setup.classes.map(c => c.name);
     const fromUrl = new URLSearchParams(location.search).get('class');
+    const urlIdx = fromUrl ? names.indexOf(fromUrl) : -1;
+    if (urlIdx >= 0) {
+      classIdx = urlIdx;
+      if (store) store.set('nabdhClass', names[urlIdx]);
+      showLockedClass(names[urlIdx]);
+      return;
+    }
+    if (fromUrl && window.lessonToast) window.lessonToast('الفصل «' + fromUrl + '» غير موجود في إعداد نبض — اختر فصلك.');
     const saved = store ? store.get('nabdhClass', '') : '';
-    const i = [fromUrl, saved].map(n => (n ? names.indexOf(n) : -1)).find(i => i >= 0);
-    classIdx = i === undefined ? 0 : i;
+    classIdx = Math.max(0, saved ? names.indexOf(saved) : 0);
     if (setup.classes.length < 2) return;
     const picker = document.getElementById('classPicker');
     const select = document.getElementById('classSelect');
@@ -189,6 +197,37 @@
       classIdx = +select.value;
       if (store) store.set('nabdhClass', setup.classes[classIdx].name);
       fill();
+    });
+  }
+
+  // A locked class shows its name; pressing it shows the class link as a QR code for students.
+  function showLockedClass(name) {
+    const badge = document.getElementById('classBadge');
+    const panel = document.getElementById('classQr');
+    if (!badge || !panel || !name) return;
+    const link = new URL(location.href);
+    link.hash = '';
+    badge.textContent = '🏫 ' + name;
+    badge.hidden = false;
+    document.body.classList.add('class-locked');
+    badge.addEventListener('click', () => {
+      if (panel.hidden) {
+        const img = panel.querySelector('img');
+        if (!img.src) img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(link.href);
+        const title = panel.querySelector('strong');
+        const bdi = document.createElement('bdi');
+        bdi.textContent = name;
+        title.replaceChildren('امسح للدخول إلى درس فصل ', bdi);
+        let shown = link.href;
+        try { shown = decodeURIComponent(link.href.replace(/\+/g, ' ')); } catch { /* keep encoded */ }
+        panel.querySelector('small').textContent = shown;
+      }
+      panel.hidden = !panel.hidden;
+      badge.setAttribute('aria-expanded', String(!panel.hidden));
+    });
+    panel.querySelector('button').addEventListener('click', () => {
+      panel.hidden = true;
+      badge.setAttribute('aria-expanded', 'false');
     });
   }
 

@@ -39,6 +39,7 @@
       </div>
 
       <div class="utilities">
+        <button type="button" class="class-badge" id="classBadge" aria-expanded="false" aria-controls="classQr" title="رمز QR لرابط الفصل" hidden></button>
         <label class="class-picker" id="classPicker" hidden>
           <span>فصلي</span>
           <select id="classSelect" aria-label="اختر فصلك"></select>
@@ -1116,6 +1117,13 @@
   </section>
 
   <a href="#tutor" class="fab-tutor" data-slide="tutor" aria-label="افتح المساعد الذكي">🤖</a>
+
+  <div class="class-qr" id="classQr" role="dialog" aria-label="رابط الفصل" hidden>
+    <button type="button" class="vq-close" aria-label="إغلاق">✕</button>
+    <strong></strong>
+    <img alt="رمز QR لرابط درس الفصل" width="220" height="220" />
+    <small></small>
+  </div>
 
   <div class="vq-modal" id="vqModal" aria-hidden="true" role="dialog" aria-modal="true"></div>
 
