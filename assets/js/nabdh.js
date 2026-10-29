@@ -5,6 +5,7 @@
      data-nabdh="activity" data-index="N"  → the class's activity N
      data-nabdh="game"     data-phase="…"  → the first game of that phase
      data-nabdh="games"                    → every game in the package
+     data-nabdh="extra"                    → the class's activities no slot shows
    Without the file every slot says the activity opens in class.
    ============================================================ */
 (function () {
@@ -145,7 +146,22 @@
 
   function fill() {
     const cls = setup ? setup.classes[classIdx] : null;
+    const placed = new Set(slots.filter(x => x.dataset.nabdh === 'activity').map(x => +x.dataset.index));
     slots.forEach(slot => {
+      if (slot.dataset.nabdh === 'extra') {
+        // activities beyond the lesson's slots (Noor can send up to six), so none is lost
+        const extra = cls ? cls.activities.filter((a, i) => a && !placed.has(i)) : [];
+        slot.replaceChildren();
+        if (!extra.length) return;
+        const head = el('h3', 'step-h', '➕ أنشطة إضافية من نبض');
+        slot.appendChild(head);
+        extra.forEach(a => {
+          const one = document.createElement('div');
+          slot.appendChild(one);
+          renderActivity(one, a);
+        });
+        return;
+      }
       if (slot.dataset.nabdh === 'games') {
         // every game in the package, in its order
         const games = setup ? setup.games : [];
