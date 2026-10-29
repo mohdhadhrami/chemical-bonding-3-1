@@ -1061,9 +1061,12 @@
   refreshCert();
 
   // -----------------------------------------------------------------
-  // 16. Interactive video (YouTube IFrame API). The questions sit under
-  //     each video and are offered when it ends. A question with a `time`
-  //     (seconds) also pauses the video at that moment.
+  // 16. Interactive video (YouTube IFrame API), H5P style: the video stops at
+  //     each question; a right answer continues, a wrong one goes back to the
+  //     previous stop and plays that part again. A question's `time` (seconds)
+  //     sets its stop; without it the questions are spread evenly over the
+  //     video. Skipping ahead past an unanswered question jumps back to it.
+  //     If the player cannot load, the questions are listed under it instead.
   // -----------------------------------------------------------------
   const VIDEO_IDS = { video1: 'EYUfyjaA5W8', video2: 'VMC7moKmk-s', video3: 'DUDsrmRqBeU' };
   const VIDEO_QUESTIONS = {
@@ -1088,15 +1091,17 @@
   };
   const vqAnswered = {};
   Object.keys(VIDEO_QUESTIONS).forEach(id => (vqAnswered[id] = new Set()));
+  const fmtTime = sec => Math.floor(sec / 60) + ':' + String(Math.floor(sec % 60)).padStart(2, '0');
   function vqProgress(id) {
     const el = document.getElementById('vqProg-' + id);
     if (el) el.textContent = `❓ ${vqAnswered[id].size}/${VIDEO_QUESTIONS[id].length} أسئلة`;
   }
-  function buildQuestionCard(id, q, i, onDone) {
+  // inVideo: only a right answer counts (a wrong one sends the video back); in the list any answer does.
+  function buildQuestionCard(id, q, i, onDone, inVideo = false) {
     const card = document.createElement('div');
     card.className = 'quiz-card vq-inline';
     const h = document.createElement('h4');
-    h.textContent = `سؤال ${i + 1}`;
+    h.textContent = `سؤال ${i + 1} من ${VIDEO_QUESTIONS[id].length}`;
     const p = document.createElement('p');
     p.textContent = q.q;
     const opts = document.createElement('div');
@@ -1109,23 +1114,30 @@
       b.type = 'button';
       b.textContent = o;
       b.addEventListener('click', () => {
+        const ok = j === q.correct;
         opts.querySelectorAll('button').forEach((x, k) => {
           x.disabled = true;
-          if (k === q.correct) x.classList.add('correct');
+          if (k === q.correct && (ok || !inVideo)) x.classList.add('correct');
           else if (x === b) x.classList.add('wrong');
         });
         fb.hidden = false;
-        const ok = j === q.correct;
         fb.className = 'feedback ' + (ok ? 'success' : 'error');
-        fb.textContent = (ok ? '✅ ' : '❌ ') + q.explain;
-        vqAnswered[id].add(i);
-        vqProgress(id);
-        onDone && onDone(ok);
+        // In the video a wrong answer does not reveal the right one: the student watches again.
+        fb.textContent = ok ? '✅ ' + q.explain : inVideo ? '❌ إجابة غير صحيحة.' : '❌ ' + q.explain;
+        if (ok || !inVideo) {
+          vqAnswered[id].add(i);
+          vqProgress(id);
+        }
+        onDone && onDone(ok, fb);
       });
       opts.appendChild(b);
     });
     card.append(h, p, opts, fb);
     return card;
+  }
+  function showQuestionList(id) {
+    const list = document.querySelector(`[data-vq-list="${id}"]`);
+    if (list) list.hidden = false;
   }
   Object.keys(VIDEO_QUESTIONS).forEach(id => {
     const host = document.querySelector(`.video-host[data-video="${id}"]`);
@@ -1135,75 +1147,135 @@
       `<p class="video-link"><a href="https://youtu.be/${VIDEO_IDS[id]}" target="_blank" rel="noopener">↗ افتح المقطع في YouTube</a></p>`;
     const head = document.createElement('h3');
     head.className = 'step-h';
-    head.textContent = '❓ أسئلة المقطع';
+    head.textContent = '❓ أسئلة المقطع (تعذّر تشغيل الفيديو هنا)';
     list.appendChild(head);
     VIDEO_QUESTIONS[id].forEach((q, i) => list.appendChild(buildQuestionCard(id, q, i)));
+    list.hidden = true;
     vqProgress(id);
   });
 
   let ytLoading = false;
+  let ytFailed = false;
   const ytPlayers = {};
+  const ytReady = {};
+  const stopTimes = {};
   let ytTimer = null;
-  function ensureYT(cb) {
+  function ensureYT(cb, onFail) {
     if (window.YT && window.YT.Player) return cb();
+    if (ytFailed) return onFail();
     const prev = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = () => { prev && prev(); cb(); };
     if (!ytLoading) {
       ytLoading = true;
       const s = document.createElement('script');
       s.src = 'https://www.youtube.com/iframe_api';
+      s.onerror = () => { ytFailed = true; onFail(); };
       document.head.appendChild(s);
     }
   }
-  function openVQ(id, q, i, player) {
+  // Each question's stop: its `time`, or an even share of the video's length.
+  function stopsFor(id, player) {
+    if (stopTimes[id]) return stopTimes[id];
+    const d = player.getDuration ? player.getDuration() : 0;
+    if (!d) return null;
+    const n = VIDEO_QUESTIONS[id].length;
+    stopTimes[id] = VIDEO_QUESTIONS[id].map((q, i) =>
+      typeof q.time === 'number' ? q.time : Math.round((d * (i + 1)) / (n + 1)),
+    );
+    return stopTimes[id];
+  }
+  const modalOpen = () => document.getElementById('vqModal').classList.contains('open');
+  function closeVQ() {
+    const modal = document.getElementById('vqModal');
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+  function openVQ(id, i, player) {
+    const q = VIDEO_QUESTIONS[id][i];
+    const back = i > 0 ? stopTimes[id][i - 1] : 0;
+    const goBack = () => {
+      closeVQ();
+      try { player.seekTo(back, true); player.playVideo(); } catch { /* ignore */ }
+    };
     const modal = document.getElementById('vqModal');
     const card = document.createElement('div');
     card.className = 'vq-card';
     const close = document.createElement('button');
     close.className = 'vq-close';
-    close.setAttribute('aria-label', 'إغلاق');
+    close.setAttribute('aria-label', 'إغلاق والعودة إلى بداية الجزء');
     close.textContent = '✕';
-    const done = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); try { player.playVideo(); } catch { /* ignore */ } };
-    close.addEventListener('click', done);
-    card.append(close, buildQuestionCard(id, q, i, () => setTimeout(done, 2200)));
+    close.addEventListener('click', goBack);
+    const tag = document.createElement('p');
+    tag.className = 'vq-time';
+    tag.textContent = '⏸ توقف المقطع عند ' + fmtTime(stopTimes[id][i]);
+    card.append(close, tag, buildQuestionCard(id, q, i, (ok, fb) => {
+      if (ok) {
+        setTimeout(() => {
+          closeVQ();
+          try { player.playVideo(); } catch { /* ignore */ }
+        }, 1800);
+        return;
+      }
+      const again = document.createElement('small');
+      again.className = 'vq-back';
+      again.textContent = ' ↩️ سنعيد المقطع من ' + fmtTime(back) + ' لتراجع الفكرة، ثم يظهر السؤال مرة أخرى.';
+      fb.appendChild(again);
+      setTimeout(goBack, 3200);
+    }, true));
     modal.replaceChildren(card);
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
+    card.querySelector('.options button')?.focus();
   }
-  function videoEnded(id) {
-    const left = VIDEO_QUESTIONS[id].length - vqAnswered[id].size;
-    if (!left) return;
-    toast(`🎬 انتهى المقطع — أجب عن ${left} من أسئلة المقطع أدناه`);
-    const list = document.querySelector(`[data-vq-list="${id}"]`);
-    const section = list.closest('.section');
-    section.scrollTo({ top: list.offsetTop - 80, behavior: 'smooth' });
+  function videoEnded(id, player) {
+    const stops = stopsFor(id, player);
+    const next = VIDEO_QUESTIONS[id].findIndex((q, i) => !vqAnswered[id].has(i));
+    if (next < 0) {
+      toast('🎉 أحسنت! أجبت عن كل أسئلة المقطع.');
+      return;
+    }
+    // a stop set after the video's end is asked when it ends
+    if (stops) openVQ(id, next, player);
+  }
+  function watch(id, player) {
+    if (ytTimer) clearInterval(ytTimer);
+    ytTimer = setInterval(() => {
+      if (modalOpen() || !player.getCurrentTime || player.getPlayerState() !== 1) return;
+      const stops = stopsFor(id, player);
+      if (!stops) return;
+      const t = player.getCurrentTime();
+      const i = VIDEO_QUESTIONS[id].findIndex((q, k) => !vqAnswered[id].has(k) && t >= stops[k] - 0.2);
+      if (i < 0) return;
+      player.pauseVideo();
+      // skipped ahead: go back to the unanswered question's stop first
+      if (t > stops[i] + 1.5) {
+        try { player.seekTo(stops[i], true); } catch { /* ignore */ }
+      }
+      openVQ(id, i, player);
+    }, 250);
   }
   onSlide(slideId => {
     Object.values(ytPlayers).forEach(p => { try { p.pauseVideo(); } catch { /* ignore */ } });
     if (ytTimer) { clearInterval(ytTimer); ytTimer = null; }
+    if (modalOpen()) closeVQ();
     if (!VIDEO_QUESTIONS[slideId]) return;
+    const fail = () => showQuestionList(slideId);
+    // no player after 12 s (blocked network, old browser): offer the questions without the video
+    setTimeout(() => { if (!ytReady[slideId]) fail(); }, 12000);
     ensureYT(() => {
       if (!ytPlayers[slideId]) {
         ytPlayers[slideId] = new YT.Player('player-' + slideId, {
           videoId: VIDEO_IDS[slideId],
           playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
-          events: { onStateChange: e => { if (e.data === YT.PlayerState.ENDED) videoEnded(slideId); } },
+          events: {
+            onReady: () => { ytReady[slideId] = true; },
+            onError: fail,
+            onStateChange: e => { if (e.data === YT.PlayerState.ENDED) videoEnded(slideId, ytPlayers[slideId]); },
+          },
         });
       }
-      const player = ytPlayers[slideId];
-      const timed = VIDEO_QUESTIONS[slideId].map((q, i) => [q, i]).filter(([q]) => typeof q.time === 'number');
-      if (!timed.length) return;
-      ytTimer = setInterval(() => {
-        if (!player.getCurrentTime || player.getPlayerState() !== 1) return;
-        const t = player.getCurrentTime();
-        timed.forEach(([q, i]) => {
-          if (!vqAnswered[slideId].has(i) && t >= q.time && !document.getElementById('vqModal').classList.contains('open')) {
-            player.pauseVideo();
-            openVQ(slideId, q, i, player);
-          }
-        });
-      }, 300);
-    });
+      watch(slideId, ytPlayers[slideId]);
+    }, fail);
   });
 
   // -----------------------------------------------------------------

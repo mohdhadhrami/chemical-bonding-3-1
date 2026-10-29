@@ -2652,3 +2652,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 800; line-height: 1
   .class-badge { max-width: 34vw; }
 }
 .class-qr strong { padding: 0 34px; }
+.vq-card .vq-time { margin: 0 0 6px; color: var(--text-secondary); font-size: .9rem; }
+.vq-card .quiz-card { margin: 0; box-shadow: none; }
+.vq-back { display: block; margin-top: 6px; font-weight: 600; }
+.video-questions[hidden] { display: none; }
