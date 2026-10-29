@@ -1,6 +1,43 @@
 {
-  "nabdh": "",
-  "lesson": "",
-  "classes": [],
-  "games": []
+  "nabdh": "https://nabdh-edu.com",
+  "lesson": "3-1 أنواع الترابط الكيميائي",
+  "classes": [
+    {
+      "name": "كيمياء 11/1",
+      "activities": [
+        { "code": "7yevtz", "title": "كيف يتكوّن الأنيون عادةً؟", "type": "poll", "label": "التهيئة" },
+        { "code": "jxa2hw", "title": "ما الذي يربط K⁺ وO²⁻ في K₂O؟", "type": "poll", "label": "أثناء الشرح" },
+        { "code": "s4tzg8", "title": "أستطيع تحديد الذرة المانحة لزوج الإلكترونات في تكوّن NH₄⁺.", "type": "likert", "label": "أثناء الشرح" },
+        { "code": "ph5ar5", "title": "اذكر فرقًا واحدًا بين انتقال الإلكترونات ومشاركتها في تكوّن الروابط.", "type": "ideas", "label": "الختام" }
+      ]
+    },
+    {
+      "name": "كيمياء 11/2",
+      "activities": [
+        { "code": "yph8mk", "title": "كيف يتكوّن الأنيون عادةً؟", "type": "poll", "label": "التهيئة" },
+        { "code": "t4fgjw", "title": "ما الذي يربط K⁺ وO²⁻ في K₂O؟", "type": "poll", "label": "أثناء الشرح" },
+        { "code": "zpj4p2", "title": "أستطيع تحديد الذرة المانحة لزوج الإلكترونات في تكوّن NH₄⁺.", "type": "likert", "label": "أثناء الشرح" },
+        { "code": "vmnaf6", "title": "اذكر فرقًا واحدًا بين انتقال الإلكترونات ومشاركتها في تكوّن الروابط.", "type": "ideas", "label": "الختام" }
+      ]
+    },
+    {
+      "name": "كيمياء 11/3",
+      "activities": [
+        { "code": "3d36xr", "title": "كيف يتكوّن الأنيون عادةً؟", "type": "poll", "label": "التهيئة" },
+        { "code": "7s3ugd", "title": "ما الذي يربط K⁺ وO²⁻ في K₂O؟", "type": "poll", "label": "أثناء الشرح" },
+        { "code": "rvssby", "title": "أستطيع تحديد الذرة المانحة لزوج الإلكترونات في تكوّن NH₄⁺.", "type": "likert", "label": "أثناء الشرح" },
+        { "code": "numuzt", "title": "اذكر فرقًا واحدًا بين انتقال الإلكترونات ومشاركتها في تكوّن الروابط.", "type": "ideas", "label": "الختام" }
+      ]
+    },
+    {
+      "name": "كيمياء 11/4",
+      "activities": [
+        { "code": "m3k53k", "title": "كيف يتكوّن الأنيون عادةً؟", "type": "poll", "label": "التهيئة" },
+        { "code": "wyuyxz", "title": "ما الذي يربط K⁺ وO²⁻ في K₂O؟", "type": "poll", "label": "أثناء الشرح" },
+        { "code": "n5hmeh", "title": "أستطيع تحديد الذرة المانحة لزوج الإلكترونات في تكوّن NH₄⁺.", "type": "likert", "label": "أثناء الشرح" },
+        { "code": "eugyky", "title": "اذكر فرقًا واحدًا بين انتقال الإلكترونات ومشاركتها في تكوّن الروابط.", "type": "ideas", "label": "الختام" }
+      ]
+    }
+  ],
+  "games": [{ "code": "kcmjjtj2jz", "title": "مسار أنواع الترابط", "phase": "during" }]
 }
